@@ -37,111 +37,83 @@
     }
     .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
 
-    /* Note Format Cycling Animation - 5 formats, 4 seconds each = 20s total */
-    @keyframes showFormatRaw {
-      0%, 17% { opacity: 1; visibility: visible; }
-      20%, 97% { opacity: 0; visibility: hidden; }
-      100% { opacity: 1; visibility: visible; }
-    }
-    @keyframes showFormat1 {
-      0%, 17% { opacity: 0; visibility: hidden; }
-      20%, 37% { opacity: 1; visibility: visible; }
-      40%, 100% { opacity: 0; visibility: hidden; }
-    }
-    @keyframes showFormat2 {
-      0%, 37% { opacity: 0; visibility: hidden; }
-      40%, 57% { opacity: 1; visibility: visible; }
-      60%, 100% { opacity: 0; visibility: hidden; }
-    }
-    @keyframes showFormat3 {
-      0%, 57% { opacity: 0; visibility: hidden; }
-      60%, 77% { opacity: 1; visibility: visible; }
-      80%, 100% { opacity: 0; visibility: hidden; }
-    }
-    @keyframes showFormat4 {
-      0%, 77% { opacity: 0; visibility: hidden; }
-      80%, 97% { opacity: 1; visibility: visible; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-    .formats-container {
+    /* Cycling Animation Containers - JS controlled */
+    .formats-container, .smart-container, .insights-container {
       display: grid;
       grid-template-columns: 1fr;
+      position: relative;
     }
-    .formats-container > div {
+    .formats-container > div, .smart-container > div, .insights-container > div {
       grid-row: 1;
       grid-column: 1;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease-in-out;
     }
-    .format-raw { animation: showFormatRaw 20s ease-in-out infinite; }
-    .format-soap { animation: showFormat1 20s ease-in-out infinite; }
-    .format-dap { animation: showFormat2 20s ease-in-out infinite; }
-    .format-birp { animation: showFormat3 20s ease-in-out infinite; }
-    .format-girp { animation: showFormat4 20s ease-in-out infinite; }
+    .formats-container > div.active, .smart-container > div.active, .insights-container > div.active {
+      opacity: 1;
+      visibility: visible;
+    }
     .handwritten {
       font-family: 'Segoe Script', 'Bradley Hand', cursive;
       font-style: italic;
     }
 
-    /* SMART Treatment Plan Animation - 4 examples, 4 seconds each = 16s total */
-    @keyframes showSmart1 {
-      0%, 22% { opacity: 1; visibility: visible; }
-      25%, 97% { opacity: 0; visibility: hidden; }
-      100% { opacity: 1; visibility: visible; }
+    /* Carousel navigation controls */
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      user-select: none;
     }
-    @keyframes showSmart2 {
-      0%, 22% { opacity: 0; visibility: hidden; }
-      25%, 47% { opacity: 1; visibility: visible; }
-      50%, 100% { opacity: 0; visibility: hidden; }
+    .carousel-nav button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: #64748b;
+      transition: color 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    @keyframes showSmart3 {
-      0%, 47% { opacity: 0; visibility: hidden; }
-      50%, 72% { opacity: 1; visibility: visible; }
-      75%, 100% { opacity: 0; visibility: hidden; }
+    .carousel-nav button:hover {
+      color: #e2e8f0;
+      transform: scale(1.1);
     }
-    @keyframes showSmart4 {
-      0%, 72% { opacity: 0; visibility: hidden; }
-      75%, 97% { opacity: 1; visibility: visible; }
-      100% { opacity: 0; visibility: hidden; }
+    .carousel-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
     }
-    .smart-container {
-      display: grid;
-      grid-template-columns: 1fr;
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #334155;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
     }
-    .smart-container > div {
-      grid-row: 1;
-      grid-column: 1;
+    .carousel-dot:hover {
+      background: #64748b;
+      transform: scale(1.2);
     }
-    .smart-1 { animation: showSmart1 16s ease-in-out infinite; }
-    .smart-2 { animation: showSmart2 16s ease-in-out infinite; }
-    .smart-3 { animation: showSmart3 16s ease-in-out infinite; }
-    .smart-4 { animation: showSmart4 16s ease-in-out infinite; }
-
-    /* Insights Animation - 3 views, 5 seconds each = 15s total */
-    @keyframes showInsight1 {
-      0%, 30% { opacity: 1; visibility: visible; }
-      33%, 97% { opacity: 0; visibility: hidden; }
-      100% { opacity: 1; visibility: visible; }
+    .carousel-dot.active {
+      background: #818cf8;
+      transform: scale(1.2);
     }
-    @keyframes showInsight2 {
-      0%, 30% { opacity: 0; visibility: hidden; }
-      33%, 63% { opacity: 1; visibility: visible; }
-      66%, 100% { opacity: 0; visibility: hidden; }
+    .carousel-pause {
+      width: 20px;
+      height: 20px;
     }
-    @keyframes showInsight3 {
-      0%, 63% { opacity: 0; visibility: hidden; }
-      66%, 97% { opacity: 1; visibility: visible; }
-      100% { opacity: 0; visibility: hidden; }
+    .carousel-arrow {
+      width: 18px;
+      height: 18px;
     }
-    .insights-container {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    .insights-container > div {
-      grid-row: 1;
-      grid-column: 1;
-    }
-    .insight-1 { animation: showInsight1 15s ease-in-out infinite; }
-    .insight-2 { animation: showInsight2 15s ease-in-out infinite; }
-    .insight-3 { animation: showInsight3 15s ease-in-out infinite; }
 
     .gradient-text {
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
@@ -381,10 +353,10 @@
       <!-- Hero Visual - Cycling Note Formats -->
       <div class="relative animate-float">
         <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6 transform hover:scale-[1.02] transition-transform duration-500">
-          <div class="formats-container">
+          <div class="formats-container" data-carousel="hero-formats" data-interval="4000">
 
           <!-- Format 0: Raw Unstructured Notes -->
-          <div class="format-raw">
+          <div class="format-raw active">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-3">
                 <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -570,6 +542,13 @@
 
           </div><!-- end formats-container -->
 
+          <div class="carousel-nav" data-carousel-nav="hero-formats">
+            <button class="carousel-prev" aria-label="Previous"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+            <div class="carousel-dots"></div>
+            <button class="carousel-next" aria-label="Next"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+            <button class="carousel-play-pause" aria-label="Pause"><svg class="carousel-pause" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg></button>
+          </div>
+
           <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
             <span data-lang-es>30 segundos</span>
             <span data-lang-en>30 seconds</span>
@@ -700,10 +679,10 @@
       <!-- Treatment Plan Animation Visual -->
       <div class="relative">
         <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
-          <div class="smart-container">
+          <div class="smart-container" data-carousel="smart" data-interval="4000">
 
             <!-- Step 1: Initial Assessment Input -->
-            <div class="smart-1">
+            <div class="smart-1 active">
               <div class="flex items-center justify-between mb-4">
                 <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 1: Evaluación Inicial</span><span data-lang-en>Step 1: Initial Assessment</span></span>
                 <span class="text-amber-400 text-sm font-medium">
@@ -894,6 +873,13 @@
 
           </div>
 
+          <div class="carousel-nav" data-carousel-nav="smart">
+            <button class="carousel-prev" aria-label="Previous"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+            <div class="carousel-dots"></div>
+            <button class="carousel-next" aria-label="Next"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+            <button class="carousel-play-pause" aria-label="Pause"><svg class="carousel-pause" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg></button>
+          </div>
+
           <div class="absolute -top-4 -right-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
             <span data-lang-es>Auto-generado</span>
             <span data-lang-en>Auto-generated</span>
@@ -971,10 +957,10 @@
       <!-- Note Formats Animation -->
       <div class="relative order-1 lg:order-1">
         <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
-          <div class="formats-container">
+          <div class="formats-container" data-carousel="section-formats" data-interval="4000">
 
             <!-- Format 0: Raw Unstructured Notes -->
-            <div class="format-raw">
+            <div class="format-raw active">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -1135,6 +1121,13 @@
 
           </div>
 
+          <div class="carousel-nav" data-carousel-nav="section-formats">
+            <button class="carousel-prev" aria-label="Previous"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+            <div class="carousel-dots"></div>
+            <button class="carousel-next" aria-label="Next"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+            <button class="carousel-play-pause" aria-label="Pause"><svg class="carousel-pause" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg></button>
+          </div>
+
           <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
             <span data-lang-es>Un clic</span>
             <span data-lang-en>One click</span>
@@ -1155,10 +1148,10 @@
       <!-- Insights Animation Visual -->
       <div class="relative order-2 lg:order-1">
         <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
-          <div class="insights-container">
+          <div class="insights-container" data-carousel="insights" data-interval="5000">
 
             <!-- Insight 1: Pattern Detection -->
-            <div class="insight-1">
+            <div class="insight-1 active">
               <div class="flex items-center justify-between mb-4">
                 <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Análisis de Patrones</span><span data-lang-en>Pattern Analysis</span></span>
                 <span class="text-violet-400 text-sm font-medium"><span data-lang-es>12 sesiones</span><span data-lang-en>12 sessions</span></span>
@@ -1267,6 +1260,13 @@
               </div>
             </div>
 
+          </div>
+
+          <div class="carousel-nav" data-carousel-nav="insights">
+            <button class="carousel-prev" aria-label="Previous"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+            <div class="carousel-dots"></div>
+            <button class="carousel-next" aria-label="Next"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+            <button class="carousel-play-pause" aria-label="Pause"><svg class="carousel-pause" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg></button>
           </div>
 
           <div class="absolute -top-4 -right-4 bg-gradient-to-r from-violet-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -2037,6 +2037,88 @@
   document.getElementById('mobile-menu-btn').addEventListener('click', () => {
     document.getElementById('mobile-menu').classList.toggle('hidden');
   });
+
+  // Carousel controller for all cycling animations
+  (function() {
+    const PAUSE_SVG = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/>';
+    const PLAY_SVG = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>';
+
+    document.querySelectorAll('[data-carousel]').forEach(function(container) {
+      var id = container.getAttribute('data-carousel');
+      var interval = parseInt(container.getAttribute('data-interval')) || 4000;
+      var items = Array.from(container.children);
+      var count = items.length;
+      var current = 0;
+      var paused = false;
+      var timer = null;
+
+      var nav = document.querySelector('[data-carousel-nav="' + id + '"]');
+      if (!nav) return;
+
+      var dotsContainer = nav.querySelector('.carousel-dots');
+      var prevBtn = nav.querySelector('.carousel-prev');
+      var nextBtn = nav.querySelector('.carousel-next');
+      var playPauseBtn = nav.querySelector('.carousel-play-pause');
+
+      // Create dots
+      for (var i = 0; i < count; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.setAttribute('data-index', i);
+        dotsContainer.appendChild(dot);
+      }
+      var dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+      function goTo(index) {
+        items[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = ((index % count) + count) % count;
+        items[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startTimer() {
+        stopTimer();
+        timer = setInterval(function() {
+          if (!paused) next();
+        }, interval);
+      }
+
+      function stopTimer() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      prevBtn.addEventListener('click', function() {
+        prev();
+        startTimer(); // reset auto-advance timer
+      });
+
+      nextBtn.addEventListener('click', function() {
+        next();
+        startTimer();
+      });
+
+      dotsContainer.addEventListener('click', function(e) {
+        var dot = e.target.closest('.carousel-dot');
+        if (!dot) return;
+        goTo(parseInt(dot.getAttribute('data-index')));
+        startTimer();
+      });
+
+      playPauseBtn.addEventListener('click', function() {
+        paused = !paused;
+        var svg = playPauseBtn.querySelector('svg');
+        svg.innerHTML = paused ? PLAY_SVG : PAUSE_SVG;
+        playPauseBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+      });
+
+      startTimer();
+    });
+  })();
 </script>
 
 </body>
