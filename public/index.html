@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gessel.ai - Termina Tus Notas Antes de que Llegue Tu Siguiente Paciente</title>
+  <meta name="description" content="gessel.ai es el asistente clínico inteligente que ayuda a terapeutas mexicanos a documentar más rápido, identificar patrones entre sesiones y crecer continuamente como clínicos. Cumple con HIPAA y la Ley Federal de Protección de Datos.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gessel: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+    /* Note Format Cycling Animation - 5 formats, 4 seconds each = 20s total */
+    @keyframes showFormatRaw {
+      0%, 17% { opacity: 1; visibility: visible; }
+      20%, 97% { opacity: 0; visibility: hidden; }
+      100% { opacity: 1; visibility: visible; }
+    }
+    @keyframes showFormat1 {
+      0%, 17% { opacity: 0; visibility: hidden; }
+      20%, 37% { opacity: 1; visibility: visible; }
+      40%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showFormat2 {
+      0%, 37% { opacity: 0; visibility: hidden; }
+      40%, 57% { opacity: 1; visibility: visible; }
+      60%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showFormat3 {
+      0%, 57% { opacity: 0; visibility: hidden; }
+      60%, 77% { opacity: 1; visibility: visible; }
+      80%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showFormat4 {
+      0%, 77% { opacity: 0; visibility: hidden; }
+      80%, 97% { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    .formats-container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .formats-container > div {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .format-raw { animation: showFormatRaw 20s ease-in-out infinite; }
+    .format-soap { animation: showFormat1 20s ease-in-out infinite; }
+    .format-dap { animation: showFormat2 20s ease-in-out infinite; }
+    .format-birp { animation: showFormat3 20s ease-in-out infinite; }
+    .format-girp { animation: showFormat4 20s ease-in-out infinite; }
+    .handwritten {
+      font-family: 'Segoe Script', 'Bradley Hand', cursive;
+      font-style: italic;
+    }
+
+    /* SMART Treatment Plan Animation - 4 examples, 4 seconds each = 16s total */
+    @keyframes showSmart1 {
+      0%, 22% { opacity: 1; visibility: visible; }
+      25%, 97% { opacity: 0; visibility: hidden; }
+      100% { opacity: 1; visibility: visible; }
+    }
+    @keyframes showSmart2 {
+      0%, 22% { opacity: 0; visibility: hidden; }
+      25%, 47% { opacity: 1; visibility: visible; }
+      50%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showSmart3 {
+      0%, 47% { opacity: 0; visibility: hidden; }
+      50%, 72% { opacity: 1; visibility: visible; }
+      75%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showSmart4 {
+      0%, 72% { opacity: 0; visibility: hidden; }
+      75%, 97% { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    .smart-container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .smart-container > div {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .smart-1 { animation: showSmart1 16s ease-in-out infinite; }
+    .smart-2 { animation: showSmart2 16s ease-in-out infinite; }
+    .smart-3 { animation: showSmart3 16s ease-in-out infinite; }
+    .smart-4 { animation: showSmart4 16s ease-in-out infinite; }
+
+    /* Insights Animation - 3 views, 5 seconds each = 15s total */
+    @keyframes showInsight1 {
+      0%, 30% { opacity: 1; visibility: visible; }
+      33%, 97% { opacity: 0; visibility: hidden; }
+      100% { opacity: 1; visibility: visible; }
+    }
+    @keyframes showInsight2 {
+      0%, 30% { opacity: 0; visibility: hidden; }
+      33%, 63% { opacity: 1; visibility: visible; }
+      66%, 100% { opacity: 0; visibility: hidden; }
+    }
+    @keyframes showInsight3 {
+      0%, 63% { opacity: 0; visibility: hidden; }
+      66%, 97% { opacity: 1; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    .insights-container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .insights-container > div {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .insight-1 { animation: showInsight1 15s ease-in-out infinite; }
+    .insight-2 { animation: showInsight2 15s ease-in-out infinite; }
+    .insight-3 { animation: showInsight3 15s ease-in-out infinite; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    html { scroll-behavior: smooth; }
+    [data-lang-en] { display: none; }
+    [data-lang-es] { display: inline; }
+    .lang-en [data-lang-en] { display: inline; }
+    .lang-en [data-lang-es] { display: none; }
+    .lang-en [data-lang-en-block] { display: block; }
+    .lang-en [data-lang-es-block] { display: none; }
+    [data-lang-en-block] { display: none; }
+    [data-lang-es-block] { display: block; }
+  </style>
+</head>
+<body class="bg-slate-900 text-white antialiased">
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-xl">G</span>
+        </div>
+        <span class="text-2xl font-bold text-white">gessel<span class="text-indigo-400">.ai</span></span>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#features" class="text-slate-300 hover:text-white transition-colors">
+          <span data-lang-es>Características</span>
+          <span data-lang-en>Features</span>
+        </a>
+        <a href="#formats" class="text-slate-300 hover:text-white transition-colors">
+          <span data-lang-es>Formatos</span>
+          <span data-lang-en>Formats</span>
+        </a>
+        <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors">
+          <span data-lang-es>Cómo Funciona</span>
+          <span data-lang-en>How it Works</span>
+        </a>
+        <a href="#pricing" class="text-slate-300 hover:text-white transition-colors">
+          <span data-lang-es>Precios</span>
+          <span data-lang-en>Pricing</span>
+        </a>
+        <a href="#security" class="text-slate-300 hover:text-white transition-colors">
+          <span data-lang-es>Seguridad</span>
+          <span data-lang-en>Security</span>
+        </a>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Language Switcher -->
+        <div class="relative">
+          <button id="lang-toggle" class="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-slate-800/50">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+            <span id="current-lang">ES</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-slate-800 rounded-xl shadow-xl border border-slate-700 overflow-hidden">
+            <button onclick="setLanguage('es')" class="w-full px-4 py-3 text-left text-slate-300 hover:bg-slate-700 hover:text-white flex items-center space-x-3">
+              <span class="text-xl">🇲🇽</span>
+              <span>Español (MX)</span>
+            </button>
+            <button onclick="setLanguage('en')" class="w-full px-4 py-3 text-left text-slate-300 hover:bg-slate-700 hover:text-white flex items-center space-x-3">
+              <span class="text-xl">🇺🇸</span>
+              <span>English</span>
+            </button>
+          </div>
+        </div>
+        <button class="text-slate-300 hover:text-white transition-colors px-4 py-2">
+          <span data-lang-es>Iniciar Sesión</span>
+          <span data-lang-en>Log In</span>
+        </button>
+        <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25">
+          <span data-lang-es>Comienza Tu Prueba Gratuita</span>
+          <span data-lang-en>Start Your Free Trial</span>
+        </button>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-slate-700 pt-4">
+      <div class="flex flex-col space-y-4">
+        <a href="#features" class="text-slate-300 hover:text-white">
+          <span data-lang-es>Características</span><span data-lang-en>Features</span>
+        </a>
+        <a href="#formats" class="text-slate-300 hover:text-white">
+          <span data-lang-es>Formatos</span><span data-lang-en>Formats</span>
+        </a>
+        <a href="#how-it-works" class="text-slate-300 hover:text-white">
+          <span data-lang-es>Cómo Funciona</span><span data-lang-en>How it Works</span>
+        </a>
+        <a href="#pricing" class="text-slate-300 hover:text-white">
+          <span data-lang-es>Precios</span><span data-lang-en>Pricing</span>
+        </a>
+        <a href="#security" class="text-slate-300 hover:text-white">
+          <span data-lang-es>Seguridad</span><span data-lang-en>Security</span>
+        </a>
+        <div class="flex space-x-2 pt-2">
+          <button onclick="setLanguage('es')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇲🇽 ES</button>
+          <button onclick="setLanguage('en')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇺🇸 EN</button>
+        </div>
+        <button class="bg-indigo-500 text-white px-6 py-2.5 rounded-full font-semibold w-full">
+          <span data-lang-es>Comienza Tu Prueba Gratuita</span><span data-lang-en>Start Your Free Trial</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute top-1/2 -left-40 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s"></div>
+    <div class="absolute bottom-20 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+  </div>
+
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <span class="text-indigo-400 text-sm font-medium">
+            <span data-lang-es>Validado Clínicamente | HIPAA & Ley Federal de Protección de Datos</span>
+            <span data-lang-en>Clinically Validated | HIPAA Compliant</span>
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          <span data-lang-es>Termina Tus Notas Antes de que Llegue Tu</span>
+          <span data-lang-en>Finish Your Notes Before Your Next Client</span>
+          <br>
+          <span class="gradient-text">
+            <span data-lang-es>Siguiente Paciente</span>
+            <span data-lang-en>Walks In</span>
+          </span>
+        </h1>
+
+        <p class="text-xl text-slate-300 mb-8 max-w-xl">
+          <span data-lang-es>gessel.ai es el asistente clínico inteligente que ayuda a terapeutas mexicanos a documentar más rápido, identificar patrones entre sesiones y crecer continuamente como clínicos. Diseñado con psicólogos clínicos certificados.</span>
+          <span data-lang-en>gessel.ai is the intelligent clinical assistant that helps Mexican therapists document faster, identify patterns across sessions, and continuously grow as clinicians. Designed with certified clinical psychologists.</span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <button class="group bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/25 flex items-center justify-center space-x-2">
+            <span data-lang-es>Comienza Tu Prueba Gratuita</span>
+            <span data-lang-en>Start Your Free Trial</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </button>
+          <button class="group flex items-center justify-center space-x-3 text-white border border-slate-600 hover:border-slate-500 px-8 py-4 rounded-full font-semibold transition-all hover:bg-slate-800/50">
+            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <span data-lang-es>Ver Demostración</span>
+            <span data-lang-en>Watch Demo</span>
+          </button>
+        </div>
+
+        <!-- Clinical Credentials -->
+        <div class="flex flex-wrap gap-3 mb-6">
+          <div class="bg-slate-800/50 border border-indigo-500/30 rounded-xl px-4 py-2">
+            <span class="text-indigo-400 font-bold">HIPAA</span>
+            <span class="text-slate-400 text-sm ml-1">
+              <span data-lang-es>Certificado</span>
+              <span data-lang-en>Compliant</span>
+            </span>
+          </div>
+          <div class="bg-slate-800/50 border border-violet-500/30 rounded-xl px-4 py-2">
+            <span class="text-violet-400 font-bold">SOC 2</span>
+            <span class="text-slate-400 text-sm ml-1">Type II</span>
+          </div>
+          <div class="bg-slate-800/50 border border-cyan-500/30 rounded-xl px-4 py-2">
+            <span class="text-cyan-400 font-bold">APA</span>
+            <span class="text-slate-400 text-sm ml-1">
+              <span data-lang-es>Lineamientos</span>
+              <span data-lang-en>Guidelines</span>
+            </span>
+          </div>
+          <div class="bg-slate-800/50 border border-emerald-500/30 rounded-xl px-4 py-2">
+            <span class="text-emerald-400 font-bold">DSM-5</span>
+            <span class="text-slate-400 text-sm ml-1">
+              <span data-lang-es>Compatible</span>
+              <span data-lang-en>Compatible</span>
+            </span>
+          </div>
+          <div class="bg-slate-800/50 border border-amber-500/30 rounded-xl px-4 py-2">
+            <span class="text-amber-400 font-bold">CIE-11</span>
+            <span class="text-slate-400 text-sm ml-1">
+              <span data-lang-es>Compatible</span>
+              <span data-lang-en>Compatible</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Social Proof Bar -->
+        <div class="flex flex-wrap items-center gap-4 text-sm text-slate-400 border-t border-slate-700 pt-6">
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span data-lang-es>Utilizado por más de 500 terapeutas</span>
+            <span data-lang-en>Trusted by 500+ therapists</span>
+          </div>
+          <span class="text-slate-600">|</span>
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span data-lang-es>90% reducción en tiempo</span>
+            <span data-lang-en>90% time reduction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual - Cycling Note Formats -->
+      <div class="relative animate-float">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6 transform hover:scale-[1.02] transition-transform duration-500">
+          <div class="formats-container">
+
+          <!-- Format 0: Raw Unstructured Notes -->
+          <div class="format-raw">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-amber-400 text-sm font-medium flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                </svg>
+                <span data-lang-es>Notas del Terapeuta</span>
+                <span data-lang-en>Therapist Notes</span>
+              </span>
+            </div>
+            <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
+              <p class="text-amber-200/80 text-sm handwritten leading-relaxed">
+                <span data-lang-es>"Pte llega mas tranquila q la semana pasada. Dice q ya no siente tanta ansiedad en el trabajo, aunq todavia le cuesta en juntas con su jefe. Hicimos ejercisios de respiracion y parece q le funcionan. Buen contacto vizual hoy. Seguir con terapia cognitivo conductual, creo q va x buen camino. Revisar diario de pensamientos la prox sesion..."</span>
+                <span data-lang-en>"Pt arrives calmer than last week. Says she doesnt feel as much anxiety at work anymore, altho still struggles in meetings w/ her boss. We did breathing exercizes and seem to help. Good eye contact today. Continue w cognitive behavioral therapy, think shes on right track. Review thought journal next session..."</span>
+              </p>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                  <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                  </svg>
+                </div>
+                <span class="text-amber-400 text-sm">
+                  <span data-lang-es>Sin formato clínico</span>
+                  <span data-lang-en>No clinical format</span>
+                </span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-slate-600 text-xs line-through">DSM-5: ???</span>
+                <span class="text-slate-600 text-xs line-through">CIE-11: ???</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Format 1: SOAP -->
+          <div class="format-soap">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-indigo-400 text-sm font-medium">SOAP</span>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                <div class="text-indigo-400 text-xs font-semibold mb-1">SUBJETIVO</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta disminución de síntomas ansiosos (PHQ-9: 8 → 5).</span><span data-lang-en>Patient reports decreased anxiety symptoms (PHQ-9: 8 → 5).</span></p>
+              </div>
+              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                <div class="text-violet-400 text-xs font-semibold mb-1">OBJETIVO</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Afecto congruente, contacto visual adecuado.</span><span data-lang-en>Congruent affect, appropriate eye contact.</span></p>
+              </div>
+              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                <div class="text-cyan-400 text-xs font-semibold mb-1">ANÁLISIS</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada (F41.1 / 6B00).</span><span data-lang-en>Generalized anxiety disorder (F41.1 / 6B00).</span></p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Revisar diario de pensamientos.</span><span data-lang-en>Continue weekly CBT. Review thought journal.</span></p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-indigo-400 text-xs font-medium"><span data-lang-es>Cumple APA</span><span data-lang-en>APA Compliant</span></span>
+              <div class="flex items-center space-x-2">
+                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
+                <span class="text-amber-400 text-xs">CIE-11: 6B00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Format 2: DAP -->
+          <div class="format-dap">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-violet-400 text-sm font-medium">DAP</span>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                <div class="text-violet-400 text-xs font-semibold mb-1">DATOS</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta mejoría en síntomas ansiosos. PHQ-9 disminuyó de 8 a 5. Afecto congruente, buen contacto visual.</span><span data-lang-en>Patient reports improvement in anxiety symptoms. PHQ-9 decreased from 8 to 5. Congruent affect, good eye contact.</span></p>
+              </div>
+              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                <div class="text-cyan-400 text-xs font-semibold mb-1">ANÁLISIS</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada con respuesta positiva al tratamiento. Progreso hacia metas terapéuticas.</span><span data-lang-en>Generalized anxiety disorder with positive treatment response. Progress toward therapeutic goals.</span></p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Practicar respiración. Revisar diario de pensamientos próxima sesión.</span><span data-lang-en>Continue weekly CBT. Practice breathing. Review thought journal next session.</span></p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-violet-400 text-xs font-medium"><span data-lang-es>Cumple APA</span><span data-lang-en>APA Compliant</span></span>
+              <div class="flex items-center space-x-2">
+                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
+                <span class="text-amber-400 text-xs">CIE-11: 6B00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Format 3: BIRP -->
+          <div class="format-birp">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-cyan-400 text-sm font-medium">BIRP</span>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                <div class="text-cyan-400 text-xs font-semibold mb-1">COMPORTAMIENTO</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente llega puntual, afecto congruente. Reporta disminución de ansiedad laboral.</span><span data-lang-en>Patient arrives on time, congruent affect. Reports decreased work anxiety.</span></p>
+              </div>
+              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                <div class="text-violet-400 text-xs font-semibold mb-1">INTERVENCIÓN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Reestructuración cognitiva, técnicas de respiración diafragmática, exposición gradual.</span><span data-lang-en>Cognitive restructuring, diaphragmatic breathing techniques, gradual exposure.</span></p>
+              </div>
+              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                <div class="text-indigo-400 text-xs font-semibold mb-1">RESPUESTA</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente receptiva, practica técnicas activamente. PHQ-9: 8 → 5.</span><span data-lang-en>Patient receptive, actively practices techniques. PHQ-9: 8 → 5.</span></p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC. Tarea: diario de pensamientos automáticos.</span><span data-lang-en>Continue CBT. Homework: automatic thought journal.</span></p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-cyan-400 text-xs font-medium"><span data-lang-es>Cumple APA</span><span data-lang-en>APA Compliant</span></span>
+              <div class="flex items-center space-x-2">
+                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
+                <span class="text-amber-400 text-xs">CIE-11: 6B00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Format 4: GIRP -->
+          <div class="format-girp">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span class="text-emerald-400 text-sm font-medium">GIRP</span>
+            </div>
+            <div class="space-y-2">
+              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                <div class="text-emerald-400 text-xs font-semibold mb-1">METAS</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es">Reducir síntomas de ansiedad. Meta: PHQ-9 < 5 en 8 semanas.</span><span data-lang-en>Reduce anxiety symptoms. Goal: PHQ-9 < 5 in 8 weeks.</span></p>
+              </div>
+              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                <div class="text-violet-400 text-xs font-semibold mb-1">INTERVENCIÓN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>TCC: reestructuración cognitiva, respiración diafragmática, exposición.</span><span data-lang-en>CBT: cognitive restructuring, diaphragmatic breathing, exposure.</span></p>
+              </div>
+              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                <div class="text-indigo-400 text-xs font-semibold mb-1">RESPUESTA</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Progreso significativo. PHQ-9: 8 → 5. Mejoría en regulación emocional.</span><span data-lang-en>Significant progress. PHQ-9: 8 → 5. Improved emotional regulation.</span></p>
+              </div>
+              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                <div class="text-cyan-400 text-xs font-semibold mb-1">PLAN</div>
+                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar hacia meta. Próxima sesión: revisar diario de pensamientos.</span><span data-lang-en>Continue toward goal. Next session: review thought journal.</span></p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <span class="text-emerald-400 text-xs font-medium"><span data-lang-es>Cumple APA</span><span data-lang-en>APA Compliant</span></span>
+              <div class="flex items-center space-x-2">
+                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
+                <span class="text-amber-400 text-xs">CIE-11: 6B00</span>
+              </div>
+            </div>
+          </div>
+
+          </div><!-- end formats-container -->
+
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <span data-lang-es>30 segundos</span>
+            <span data-lang-en>30 seconds</span>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-violet-500/20 to-transparent rounded-full blur-xl"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Value Proposition Cards -->
+<section class="bg-slate-900 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1: Save Time -->
+      <div class="group relative bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 border border-indigo-500/20 hover:border-indigo-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+        <div class="text-indigo-400 mb-6">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Notas en Segundos, No en Horas</span>
+          <span data-lang-en>Notes in Seconds, Not Hours</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>Deja de pasar tus noches documentando. gessel.ai genera notas clínicas listas para aseguradoras en menos de 30 segundos, devolviéndote más de 10 horas cada semana.</span>
+          <span data-lang-en>Stop spending your evenings on documentation. gessel.ai generates insurance-ready clinical notes in under 30 seconds, giving you back 10+ hours every week.</span>
+        </p>
+      </div>
+
+      <!-- Card 2: Better Insights -->
+      <div class="group relative bg-gradient-to-br from-violet-500/20 to-violet-500/5 border border-violet-500/20 hover:border-violet-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+        <div class="text-violet-400 mb-6">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Descubre Lo Que Podrías Estar Perdiendo</span>
+          <span data-lang-en>See What You Might Miss</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>Nuestra IA identifica patrones entre sesiones que pueden no ser visibles en el momento. Descubre temas recurrentes, rastrea el progreso de tus pacientes y encuentra oportunidades terapéuticas.</span>
+          <span data-lang-en>Our AI identifies patterns across sessions that may not be visible in the moment. Surface recurring themes, track client progress, and discover therapeutic opportunities.</span>
+        </p>
+      </div>
+
+      <!-- Card 3: Grow as Clinician -->
+      <div class="group relative bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/20 hover:border-cyan-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+        <div class="text-cyan-400 mb-6">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Conviértete en Mejor Terapeuta</span>
+          <span data-lang-en>Become a Better Therapist</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>A diferencia de otros escribas de IA que solo transcriben, gessel.ai actúa como tu observador inteligente. Rastrea tu desarrollo, comprende tu estilo terapéutico y mejora continuamente tu práctica.</span>
+          <span data-lang-en>Unlike other AI scribes that just transcribe, gessel.ai acts as your intelligent observer. Track your development, understand your therapeutic style, and continuously improve your practice.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clinical Note Formats Section -->
+<section id="formats" class="bg-slate-950 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Text & Format Cards -->
+      <div class="order-2 lg:order-2">
+        <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+          <span class="text-indigo-400 text-sm font-medium">
+            <span data-lang-es>FORMATOS CLÍNICOS</span>
+            <span data-lang-en>CLINICAL FORMATS</span>
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          <span data-lang-es>Genera Notas en</span>
+          <span data-lang-en>Generate Notes in</span>
+          <br>
+          <span class="gradient-text">
+            <span data-lang-es>Tu Formato Preferido</span>
+            <span data-lang-en>Your Preferred Format</span>
+          </span>
+        </h2>
+        <p class="text-xl text-slate-400 mb-8">
+          <span data-lang-es>Documentación estructurada que cumple con estándares profesionales</span>
+          <span data-lang-en>Structured documentation that meets professional standards</span>
+        </p>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-indigo-500/10">
+            <div class="text-2xl font-bold text-indigo-400 mb-2">SOAP</div>
+            <p class="text-xs text-slate-400">
+              <span data-lang-es>Subjetivo, Objetivo, Análisis, Plan</span>
+              <span data-lang-en>Subjective, Objective, Assessment, Plan</span>
+            </p>
+          </div>
+
+          <div class="bg-slate-800/50 border border-slate-700 hover:border-violet-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-violet-500/10">
+            <div class="text-2xl font-bold text-violet-400 mb-2">DAP</div>
+            <p class="text-xs text-slate-400">
+              <span data-lang-es>Datos, Análisis, Plan</span>
+              <span data-lang-en>Data, Assessment, Plan</span>
+            </p>
+          </div>
+
+          <div class="bg-slate-800/50 border border-slate-700 hover:border-cyan-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-cyan-500/10">
+            <div class="text-2xl font-bold text-cyan-400 mb-2">BIRP</div>
+            <p class="text-xs text-slate-400">
+              <span data-lang-es>Conducta, Intervención, Respuesta, Plan</span>
+              <span data-lang-en>Behavior, Intervention, Response, Plan</span>
+            </p>
+          </div>
+
+          <div class="bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
+            <div class="text-2xl font-bold text-emerald-400 mb-2">GIRP</div>
+            <p class="text-xs text-slate-400">
+              <span data-lang-es>Metas, Intervención, Respuesta, Plan</span>
+              <span data-lang-en>Goals, Intervention, Response, Plan</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note Formats Animation -->
+      <div class="relative order-1 lg:order-1">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+          <div class="formats-container">
+
+            <!-- Format 0: Raw Unstructured Notes -->
+            <div class="format-raw">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-amber-400 text-sm font-medium flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                  </svg>
+                  <span data-lang-es>Notas Originales</span>
+                  <span data-lang-en>Original Notes</span>
+                </span>
+              </div>
+              <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
+                <p class="text-amber-200/80 text-sm handwritten leading-relaxed">
+                  <span data-lang-es>"Pte llega mas tranquila q la semana pasada. Dice q ya no siente tanta ansiedad en el trabajo. Hicimos ejercisios de respiracion. Buen contacto vizual. Seguir con TCC, va x buen camino..."</span>
+                  <span data-lang-en>"Pt calmer than last week. Says less anxiety at work. Did breathing exercizes. Good eye contact. Continue CBT, on right track..."</span>
+                </p>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-amber-400 text-sm"><span data-lang-es>Sin formato</span><span data-lang-en>Unformatted</span></span>
+                <span class="text-slate-600 text-xs line-through">DSM-5 / CIE-11</span>
+              </div>
+            </div>
+
+            <!-- Format 1: SOAP -->
+            <div class="format-soap">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-indigo-400 text-sm font-medium">SOAP</span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-2">
+                  <span class="text-indigo-400 text-xs font-semibold">S:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Reporta disminución de ansiedad (PHQ-9: 8→5)</span><span data-lang-en>Reports decreased anxiety (PHQ-9: 8→5)</span></span>
+                </div>
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-2">
+                  <span class="text-violet-400 text-xs font-semibold">O:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Afecto congruente, contacto visual adecuado</span><span data-lang-en>Congruent affect, appropriate eye contact</span></span>
+                </div>
+                <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2">
+                  <span class="text-cyan-400 text-xs font-semibold">A:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>TAG con respuesta positiva a TCC</span><span data-lang-en>GAD with positive CBT response</span></span>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
+                  <span class="text-emerald-400 text-xs font-semibold">P:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Continuar TCC, revisar diario</span><span data-lang-en>Continue CBT, review journal</span></span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-indigo-400 text-sm">SOAP</span>
+                <span class="text-emerald-400 text-xs">F41.1 / 6B00</span>
+              </div>
+            </div>
+
+            <!-- Format 2: DAP -->
+            <div class="format-dap">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-violet-400 text-sm font-medium">DAP</span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <span class="text-violet-400 text-xs font-semibold">D:</span>
+                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>Paciente reporta mejoría. PHQ-9: 8→5. Afecto congruente, buen contacto visual.</span><span data-lang-en>Patient reports improvement. PHQ-9: 8→5. Congruent affect, good eye contact.</span></span>
+                </div>
+                <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                  <span class="text-cyan-400 text-xs font-semibold">A:</span>
+                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>TAG con respuesta positiva al tratamiento.</span><span data-lang-en">GAD with positive treatment response.</span></span>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <span class="text-emerald-400 text-xs font-semibold">P:</span>
+                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>Continuar TCC semanal. Revisar diario próxima sesión.</span><span data-lang-en>Continue weekly CBT. Review journal next session.</span></span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-violet-400 text-sm">DAP</span>
+                <span class="text-emerald-400 text-xs">F41.1 / 6B00</span>
+              </div>
+            </div>
+
+            <!-- Format 3: BIRP -->
+            <div class="format-birp">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-cyan-400 text-sm font-medium">BIRP</span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2">
+                  <span class="text-cyan-400 text-xs font-semibold">B:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Puntual, afecto congruente, reporta menos ansiedad</span><span data-lang-en>On time, congruent affect, reports less anxiety</span></span>
+                </div>
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-2">
+                  <span class="text-violet-400 text-xs font-semibold">I:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Reestructuración cognitiva, respiración diafragmática</span><span data-lang-en">Cognitive restructuring, diaphragmatic breathing</span></span>
+                </div>
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-2">
+                  <span class="text-indigo-400 text-xs font-semibold">R:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es">Receptiva, practica técnicas. PHQ-9: 8→5</span><span data-lang-en>Receptive, practices techniques. PHQ-9: 8→5</span></span>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
+                  <span class="text-emerald-400 text-xs font-semibold">P:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Continuar TCC, tarea: diario de pensamientos</span><span data-lang-en">Continue CBT, homework: thought journal</span></span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-cyan-400 text-sm">BIRP</span>
+                <span class="text-emerald-400 text-xs">F41.1 / 6B00</span>
+              </div>
+            </div>
+
+            <!-- Format 4: GIRP -->
+            <div class="format-girp">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-emerald-400 text-sm font-medium">GIRP</span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
+                  <span class="text-emerald-400 text-xs font-semibold">G:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es">Reducir ansiedad. Meta: PHQ-9 < 5 en 8 semanas</span><span data-lang-en">Reduce anxiety. Goal: PHQ-9 < 5 in 8 weeks</span></span>
+                </div>
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-2">
+                  <span class="text-violet-400 text-xs font-semibold">I:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es">TCC, reestructuración cognitiva, exposición gradual</span><span data-lang-en">CBT, cognitive restructuring, gradual exposure</span></span>
+                </div>
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-2">
+                  <span class="text-indigo-400 text-xs font-semibold">R:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es">Progreso: PHQ-9 8→5. Mejoría en regulación</span><span data-lang-en">Progress: PHQ-9 8→5. Improved regulation</span></span>
+                </div>
+                <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2">
+                  <span class="text-cyan-400 text-xs font-semibold">P:</span>
+                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es">Continuar, próxima: revisar diario de pensamientos</span><span data-lang-en">Continue, next: review thought journal</span></span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-emerald-400 text-sm">GIRP</span>
+                <span class="text-emerald-400 text-xs">F41.1 / 6B00</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <span data-lang-es>Un clic</span>
+            <span data-lang-en>One click</span>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-violet-500/20 to-transparent rounded-full blur-xl"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Treatment Plan Workflow Section -->
+<section class="bg-slate-900 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Text Content -->
+      <div>
+        <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+          <span class="text-emerald-400 text-sm font-medium">
+            <span data-lang-es>PLANES DE TRATAMIENTO</span>
+            <span data-lang-en>TREATMENT PLANS</span>
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          <span data-lang-es>De la Evaluación al</span>
+          <span data-lang-en>From Assessment to</span>
+          <br>
+          <span class="gradient-text">
+            <span data-lang-es>Plan Completo en Segundos</span>
+            <span data-lang-en>Complete Plan in Seconds</span>
+          </span>
+        </h2>
+        <p class="text-xl text-slate-400 mb-8">
+          <span data-lang-es>gessel.ai toma la información de tu primera sesión y genera automáticamente un plan de tratamiento completo con objetivos SMART y un plan sesión por sesión.</span>
+          <span data-lang-en>gessel.ai takes your first session information and automatically generates a complete treatment plan with SMART goals and a session-by-session roadmap.</span>
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-amber-400 font-bold text-sm">1</span>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Ingresa Evaluación Inicial</span><span data-lang-en>Enter Initial Assessment</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es>Síntomas, diagnóstico, puntuaciones baseline, historia relevante</span><span data-lang-en>Symptoms, diagnosis, baseline scores, relevant history</span></p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-indigo-400 font-bold text-sm">2</span>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Genera Objetivos SMART</span><span data-lang-en">Generate SMART Goals</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es>Metas específicas, medibles, alcanzables, relevantes y temporales</span><span data-lang-en>Specific, measurable, achievable, relevant, and time-bound goals</span></p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-emerald-400 font-bold text-sm">3</span>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Plan Sesión por Sesión</span><span data-lang-en">Session-by-Session Plan</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es>Técnicas basadas en evidencia, tareas para casa, objetivos por sesión</span><span data-lang-en">Evidence-based techniques, homework, objectives per session</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Treatment Plan Animation Visual -->
+      <div class="relative">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+          <div class="smart-container">
+
+            <!-- Step 1: Initial Assessment Input -->
+            <div class="smart-1">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 1: Evaluación Inicial</span><span data-lang-en>Step 1: Initial Assessment</span></span>
+                <span class="text-amber-400 text-sm font-medium">
+                  <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                  <span data-lang-es>Entrada</span><span data-lang-en>Input</span>
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                  <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>PROBLEMA PRINCIPAL</span><span data-lang-en">PRESENTING PROBLEM</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Ansiedad en situaciones laborales, ataques de pánico frecuentes, evitación de reuniones</span><span data-lang-en">Anxiety in work situations, frequent panic attacks, meeting avoidance</span></p>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-slate-700/30 rounded-lg p-2">
+                    <div class="text-slate-500 text-xs"><span data-lang-es>Diagnóstico</span><span data-lang-en">Diagnosis</span></div>
+                    <p class="text-white text-sm font-medium">F41.1 / 6B00</p>
+                  </div>
+                  <div class="bg-slate-700/30 rounded-lg p-2">
+                    <div class="text-slate-500 text-xs"><span data-lang-es">Duración</span><span data-lang-en">Duration</span></div>
+                    <p class="text-white text-sm font-medium"><span data-lang-es">6 meses</span><span data-lang-en">6 months</span></p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-2">
+                    <div class="text-rose-400 text-xs">GAD-7</div>
+                    <p class="text-white text-lg font-bold">16 <span class="text-rose-400 text-xs"><span data-lang-es">severo</span><span data-lang-en">severe</span></span></p>
+                  </div>
+                  <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-2">
+                    <div class="text-rose-400 text-xs">PHQ-9</div>
+                    <p class="text-white text-lg font-bold">12 <span class="text-amber-400 text-xs"><span data-lang-es">moderado</span><span data-lang-en">moderate</span></span></p>
+                  </div>
+                </div>
+                <div class="bg-slate-700/30 rounded-lg p-2">
+                  <div class="text-slate-500 text-xs"><span data-lang-es>Gatillos identificados</span><span data-lang-en">Identified triggers</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Reuniones con supervisora, presentaciones, deadlines</span><span data-lang-en">Meetings with supervisor, presentations, deadlines</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: SMART Goals Generated -->
+            <div class="smart-2">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 2: Objetivos SMART</span><span data-lang-en">Step 2: SMART Goals</span></span>
+                <span class="text-indigo-400 text-sm font-medium">
+                  <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                  AI
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-1">
+                    <span class="w-5 h-5 bg-indigo-500 text-white text-xs font-bold rounded flex items-center justify-center">S</span>
+                    <span class="text-indigo-400 text-xs font-semibold"><span data-lang-es">ESPECÍFICO</span><span data-lang-en">SPECIFIC</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Reducir ataques de pánico en situaciones laborales</span><span data-lang-en">Reduce panic attacks in work situations</span></p>
+                </div>
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-1">
+                    <span class="w-5 h-5 bg-violet-500 text-white text-xs font-bold rounded flex items-center justify-center">M</span>
+                    <span class="text-violet-400 text-xs font-semibold"><span data-lang-es">MEDIBLE</span><span data-lang-en">MEASURABLE</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">GAD-7: 16→<8 | Pánico: 4/sem→≤1/sem</span><span data-lang-en">GAD-7: 16→<8 | Panic: 4/wk→≤1/wk</span></p>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2">
+                    <span class="w-4 h-4 bg-cyan-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">A</span>
+                    <p class="text-slate-300 text-xs"><span data-lang-es">TCC semanal</span><span data-lang-en">Weekly CBT</span></p>
+                  </div>
+                  <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
+                    <span class="w-4 h-4 bg-amber-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">R</span>
+                    <p class="text-slate-300 text-xs"><span data-lang-es">Empleo</span><span data-lang-en">Job</span></p>
+                  </div>
+                  <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
+                    <span class="w-4 h-4 bg-emerald-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">T</span>
+                    <p class="text-slate-300 text-xs"><span data-lang-es">8 sem</span><span data-lang-en">8 wks</span></p>
+                  </div>
+                </div>
+                <div class="bg-slate-700/30 rounded-lg p-2">
+                  <div class="text-slate-500 text-xs mb-1"><span data-lang-es">Intervenciones recomendadas</span><span data-lang-en">Recommended interventions</span></div>
+                  <div class="flex flex-wrap gap-1">
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Respiración</span><span data-lang-en">Breathing</span></span>
+                    <span class="bg-violet-500/20 text-violet-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Reestructuración</span><span data-lang-en">Restructuring</span></span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Exposición</span><span data-lang-en">Exposure</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Session-by-Session Plan -->
+            <div class="smart-3">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es">Paso 3: Plan por Sesión</span><span data-lang-en">Step 3: Session Plan</span></span>
+                <span class="text-emerald-400 text-sm font-medium">8 <span data-lang-es">sesiones</span><span data-lang-en">sessions</span></span>
+              </div>
+              <div class="space-y-2 text-xs">
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-indigo-500 text-white text-xs font-bold rounded-full flex items-center justify-center">1</span>
+                    <span class="text-white"><span data-lang-es">Evaluación y Psicoeducación</span><span data-lang-en">Assessment & Psychoeducation</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Rapport, modelo TCC</span><span data-lang-en">Rapport, CBT model</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-indigo-500 text-white text-xs font-bold rounded-full flex items-center justify-center">2</span>
+                    <span class="text-white"><span data-lang-es">Técnicas de Relajación</span><span data-lang-en">Relaxation Techniques</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Respiración, RMP</span><span data-lang-en">Breathing, PMR</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-violet-500 text-white text-xs font-bold rounded-full flex items-center justify-center">3</span>
+                    <span class="text-white"><span data-lang-es">Modelo Cognitivo</span><span data-lang-en">Cognitive Model</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Pensamientos automáticos</span><span data-lang-en">Automatic thoughts</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-violet-500 text-white text-xs font-bold rounded-full flex items-center justify-center">4</span>
+                    <span class="text-white"><span data-lang-es">Reestructuración Cognitiva</span><span data-lang-en">Cognitive Restructuring</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Registro ABC</span><span data-lang-en">ABC record</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-cyan-500 text-white text-xs font-bold rounded-full flex items-center justify-center">5</span>
+                    <span class="text-white"><span data-lang-es">Exposición Gradual I</span><span data-lang-en">Gradual Exposure I</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Jerarquía, nivel 1-2</span><span data-lang-en">Hierarchy, level 1-2</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-cyan-500 text-white text-xs font-bold rounded-full flex items-center justify-center">6</span>
+                    <span class="text-white"><span data-lang-es">Exposición Gradual II</span><span data-lang-en">Gradual Exposure II</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Nivel 3-4</span><span data-lang-en">Level 3-4</span></span>
+                </div>
+                <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">7</span>
+                    <span class="text-white"><span data-lang-es">Exposición In Vivo</span><span data-lang-en">In Vivo Exposure</span></span>
+                  </div>
+                  <span class="text-slate-400"><span data-lang-es">Situación real</span><span data-lang-en">Real situation</span></span>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">8</span>
+                    <span class="text-white"><span data-lang-es">Prevención de Recaídas</span><span data-lang-en">Relapse Prevention</span></span>
+                  </div>
+                  <span class="text-emerald-400"><span data-lang-es">Cierre, plan futuro</span><span data-lang-en">Closure, future plan</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Single Session Detail -->
+            <div class="smart-4">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es">Detalle: Sesión 4</span><span data-lang-en">Detail: Session 4</span></span>
+                <span class="text-rose-400 text-sm font-medium"><span data-lang-es">Reestructuración</span><span data-lang-en">Restructuring</span></span>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3">
+                  <div class="text-rose-400 text-xs font-semibold mb-1"><span data-lang-es">OBJETIVOS DE SESIÓN</span><span data-lang-en">SESSION OBJECTIVES</span></div>
+                  <ul class="text-slate-300 text-sm space-y-1">
+                    <li>• <span data-lang-es">Revisar tarea de respiración</span><span data-lang-en">Review breathing homework</span></li>
+                    <li>• <span data-lang-es">Enseñar registro de pensamientos ABC</span><span data-lang-en">Teach ABC thought recording</span></li>
+                    <li>• <span data-lang-es">Identificar distorsiones cognitivas</span><span data-lang-en">Identify cognitive distortions</span></li>
+                  </ul>
+                </div>
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                  <div class="text-indigo-400 text-xs font-semibold mb-1"><span data-lang-es">TÉCNICAS</span><span data-lang-en">TECHNIQUES</span></div>
+                  <div class="flex flex-wrap gap-1">
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Registro ABC</span><span data-lang-en">ABC Record</span></span>
+                    <span class="bg-violet-500/20 text-violet-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Cuestionamiento socrático</span><span data-lang-en">Socratic questioning</span></span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded"><span data-lang-es">Reatribución</span><span data-lang-en">Reattribution</span></span>
+                  </div>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                  <div class="text-amber-400 text-xs font-semibold mb-1"><span data-lang-es">TAREA PARA CASA</span><span data-lang-en">HOMEWORK</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Completar 5 registros ABC durante la semana. Identificar pensamientos en reuniones.</span><span data-lang-en">Complete 5 ABC records during the week. Identify thoughts in meetings.</span></p>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <div class="text-emerald-400 text-xs font-semibold mb-1"><span data-lang-es">SIGUIENTE SESIÓN</span><span data-lang-en">NEXT SESSION</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Revisar registros, comenzar jerarquía de exposición</span><span data-lang-en">Review records, begin exposure hierarchy</span></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <span data-lang-es">Auto-generado</span>
+            <span data-lang-en">Auto-generated</span>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-transparent rounded-full blur-xl"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Insights Between Sessions Section -->
+<section class="bg-slate-950 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Insights Animation Visual -->
+      <div class="relative order-2 lg:order-1">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+          <div class="insights-container">
+
+            <!-- Insight 1: Pattern Detection -->
+            <div class="insight-1">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Análisis de Patrones</span><span data-lang-en>Pattern Analysis</span></span>
+                <span class="text-violet-400 text-sm font-medium"><span data-lang-es>12 sesiones</span><span data-lang-en>12 sessions</span></span>
+              </div>
+              <div class="space-y-3">
+                <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-violet-400 text-xs font-semibold"><span data-lang-es>TEMAS RECURRENTES</span><span data-lang-en>RECURRING THEMES</span></span>
+                    <span class="text-violet-400 text-xs">AI <span data-lang-es>detectado</span><span data-lang-en>detected</span></span>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-violet-500/20 text-violet-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Conflicto laboral</span><span data-lang-en>Work conflict</span> (8x)</span>
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Autoestima</span><span data-lang-en>Self-esteem</span> (6x)</span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Límites</span><span data-lang-en>Boundaries</span> (5x)</span>
+                  </div>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                  <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>CONEXIÓN DETECTADA</span><span data-lang-en>CONNECTION DETECTED</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Los episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <div class="text-emerald-400 text-xs font-semibold mb-2"><span data-lang-es>SUGERENCIA TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC SUGGESTION</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Considerar explorar dinámica de autoridad y experiencias previas con figuras de poder</span><span data-lang-en>Consider exploring authority dynamics and past experiences with power figures</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight 2: Progress Timeline -->
+            <div class="insight-2">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Línea de Progreso</span><span data-lang-en>Progress Timeline</span></span>
+                <span class="text-cyan-400 text-sm font-medium">PHQ-9 / GAD-7</span>
+              </div>
+              <div class="space-y-3">
+                <div class="bg-slate-700/30 rounded-lg p-3">
+                  <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                    <span><span data-lang-es>Sesión 1</span><span data-lang-en>Session 1</span></span>
+                    <span><span data-lang-es>Sesión 12</span><span data-lang-en>Session 12</span></span>
+                  </div>
+                  <div class="relative h-16">
+                    <svg class="w-full h-full" viewBox="0 0 200 60">
+                      <path d="M10,50 Q30,48 50,40 T90,30 T130,20 T170,15 T190,10" stroke="#06b6d4" stroke-width="2" fill="none"/>
+                      <circle cx="10" cy="50" r="4" fill="#ef4444"/>
+                      <circle cx="50" cy="40" r="4" fill="#f59e0b"/>
+                      <circle cx="90" cy="30" r="4" fill="#eab308"/>
+                      <circle cx="130" cy="20" r="4" fill="#84cc16"/>
+                      <circle cx="190" cy="10" r="4" fill="#22c55e"/>
+                    </svg>
+                  </div>
+                  <div class="flex justify-between text-xs mt-1">
+                    <span class="text-red-400">PHQ-9: 18</span>
+                    <span class="text-emerald-400">PHQ-9: 5 ✓</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 text-center">
+                    <div class="text-emerald-400 text-lg font-bold">72%</div>
+                    <div class="text-slate-400 text-xs"><span data-lang-es>Reducción síntomas</span><span data-lang-en>Symptom reduction</span></div>
+                  </div>
+                  <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-2 text-center">
+                    <div class="text-cyan-400 text-lg font-bold">4/5</div>
+                    <div class="text-slate-400 text-xs"><span data-lang-es>Metas logradas</span><span data-lang-en>Goals achieved</span></div>
+                  </div>
+                  <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-2 text-center">
+                    <div class="text-violet-400 text-lg font-bold">+3</div>
+                    <div class="text-slate-400 text-xs"><span data-lang-es>Sesiones restantes</span><span data-lang-en>Sessions left</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight 3: Risk & Opportunities -->
+            <div class="insight-3">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Alertas y Oportunidades</span><span data-lang-en>Alerts & Opportunities</span></span>
+                <span class="text-rose-400 text-sm font-medium"><span data-lang-es>Tiempo real</span><span data-lang-en>Real-time</span></span>
+              </div>
+              <div class="space-y-3">
+                <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <span class="text-rose-400 text-xs font-semibold"><span data-lang-es>INDICADOR DE RIESGO</span><span data-lang-en>RISK INDICATOR</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Aumento de aislamiento social mencionado en últimas 2 sesiones</span><span data-lang-en">Increased social isolation mentioned in last 2 sessions</span></p>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <span class="text-amber-400 text-xs font-semibold"><span data-lang-es>OPORTUNIDAD TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC OPPORTUNITY</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Paciente mencionó interés en yoga - considerar como intervención complementaria</span><span data-lang-en>Patient mentioned interest in yoga - consider as complementary intervention</span></p>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-2">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-emerald-400 text-xs font-semibold"><span data-lang-es>FORTALEZA IDENTIFICADA</span><span data-lang-en>STRENGTH IDENTIFIED</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es">Alta motivación y cumplimiento de tareas (95% completadas)</span><span data-lang-en>High motivation and homework compliance (95% completed)</span></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-violet-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <span data-lang-es>IA en tiempo real</span>
+            <span data-lang-en>Real-time AI</span>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-violet-500/20 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-full blur-xl"></div>
+      </div>
+
+      <!-- Text Content -->
+      <div class="order-1 lg:order-2">
+        <div class="inline-flex items-center space-x-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-4 py-2 mb-6">
+          <span class="text-violet-400 text-sm font-medium">
+            <span data-lang-es>INSIGHTS INTELIGENTES</span>
+            <span data-lang-en>INTELLIGENT INSIGHTS</span>
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          <span data-lang-es>Ve Lo Que</span>
+          <span data-lang-en>See What You</span>
+          <br>
+          <span class="gradient-text">
+            <span data-lang-es>Podrías Pasar Por Alto</span>
+            <span data-lang-en>Might Miss</span>
+          </span>
+        </h2>
+        <p class="text-xl text-slate-400 mb-8">
+          <span data-lang-es>gessel.ai analiza todas tus sesiones para revelar patrones, rastrear progreso y detectar oportunidades terapéuticas que podrían pasar desapercibidas.</span>
+          <span data-lang-en>gessel.ai analyzes all your sessions to reveal patterns, track progress, and detect therapeutic opportunities that might go unnoticed.</span>
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-violet-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Detección de Patrones</span><span data-lang-en>Pattern Detection</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es>Identifica temas recurrentes y conexiones entre sesiones automáticamente</span><span data-lang-en>Automatically identifies recurring themes and connections across sessions</span></p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Seguimiento de Progreso</span><span data-lang-en>Progress Tracking</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es>Visualiza métricas objetivas y tendencias a lo largo del tratamiento</span><span data-lang-en">Visualize objective metrics and trends throughout treatment</span></p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-rose-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-white font-semibold"><span data-lang-es>Alertas de Riesgo</span><span data-lang-en>Risk Alerts</span></h4>
+              <p class="text-slate-400 text-sm"><span data-lang-es">Notificaciones tempranas sobre indicadores que requieren atención</span><span data-lang-en>Early notifications about indicators requiring attention</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="bg-slate-900 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+        <span class="text-indigo-400 text-sm font-medium">
+          <span data-lang-es>ASÍ DE SIMPLE</span>
+          <span data-lang-en>SIMPLE AS 1-2-3</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <span data-lang-es>De la Sesión a la Nota en</span>
+        <span data-lang-en>From Session to Note in</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Tres Simples Pasos</span>
+          <span data-lang-en>Three Simple Steps</span>
+        </span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 relative">
+      <!-- Connecting Line -->
+      <div class="hidden md:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+
+      <!-- Step 1: Capture -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-indigo-500/25">
+          <span class="text-2xl font-bold text-white">1</span>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Captura</span>
+          <span data-lang-en>Capture</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>Sube una foto de tus notas manuscritas o escribe directamente en la plataforma. gessel.ai extrae el texto usando OCR avanzado y lo procesa de forma segura. Las imágenes se eliminan inmediatamente.</span>
+          <span data-lang-en>Upload a photo of your handwritten notes or type directly into the platform. gessel.ai extracts text using advanced OCR and processes it securely. Images are deleted immediately.</span>
+        </p>
+      </div>
+
+      <!-- Step 2: Generate -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-violet-500/25">
+          <span class="text-2xl font-bold text-white">2</span>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Genera</span>
+          <span data-lang-en>Generate</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>Segundos después de terminar tu sesión, recibe una nota clínica completa en tu formato preferido (SOAP, DAP, GIRP o personalizado). Edita según necesites con un clic.</span>
+          <span data-lang-en>Within seconds of ending your session, receive a complete clinical note in your preferred format (SOAP, DAP, GIRP, or custom). Edit as needed with one click.</span>
+        </p>
+      </div>
+
+      <!-- Step 3: Learn -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/25">
+          <span class="text-2xl font-bold text-white">3</span>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">
+          <span data-lang-es>Aprende</span>
+          <span data-lang-en>Learn</span>
+        </h3>
+        <p class="text-slate-400">
+          <span data-lang-es>Con el tiempo, gessel.ai revela patrones entre tus sesiones, te ayuda a rastrear el progreso de tus pacientes y proporciona insights para apoyar tu desarrollo como clínico.</span>
+          <span data-lang-en>Over time, gessel.ai surfaces patterns across your sessions, helps you track client progress, and provides insights to support your development as a clinician.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Evidence/Stats Section -->
+<section class="bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        <span data-lang-es>Respaldado por la Comunidad Clínica</span>
+        <span data-lang-en>Backed by the Clinical Community</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+        <div class="text-5xl font-bold text-white mb-2">94%</div>
+        <p class="text-indigo-100">
+          <span data-lang-es>de clínicos reportan que las notas cumplen estándares</span>
+          <span data-lang-en>of clinicians report notes meet documentation standards</span>
+        </p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+        <div class="text-5xl font-bold text-white mb-2">89%</div>
+        <p class="text-indigo-100">
+          <span data-lang-es>precisión en identificación de intervenciones</span>
+          <span data-lang-en>accuracy in intervention identification</span>
+        </p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+        <div class="text-5xl font-bold text-white mb-2">12hrs</div>
+        <p class="text-indigo-100">
+          <span data-lang-es>recuperadas por semana en promedio</span>
+          <span data-lang-en>average recovered per week</span>
+        </p>
+      </div>
+      <div class="bg-white/10 backdrop-blur rounded-2xl p-8 text-center">
+        <div class="text-5xl font-bold text-white mb-2">500+</div>
+        <p class="text-indigo-100">
+          <span data-lang-es>terapeutas en México confían en nosotros</span>
+          <span data-lang-en>therapists in Mexico trust us</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="bg-slate-950 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+        <span class="text-indigo-400 text-sm font-medium">
+          <span data-lang-es>CARACTERÍSTICAS</span>
+          <span data-lang-en>FEATURES</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <span data-lang-es>Todo Lo Que Necesitas Para</span>
+        <span data-lang-en>Everything You Need to</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Documentar Menos y Desarrollarte Más</span>
+          <span data-lang-en>Document Less and Develop More</span>
+        </span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Feature 1: Treatment Planning (SMART) -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Planes de Tratamiento SMART</span>
+          <span data-lang-en>SMART Treatment Plans</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Crea planes de tratamiento con objetivos SMART e intervenciones basadas en evidencia. Seguimiento automático del progreso con métricas objetivas.</span>
+          <span data-lang-en>Create treatment plans with SMART goals and evidence-based interventions. Automatic progress tracking with objective metrics.</span>
+        </p>
+      </div>
+
+      <!-- Feature 2: Pattern Recognition -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-violet-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Insights Entre Sesiones</span>
+          <span data-lang-en>Insights Across Sessions</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Descubre conexiones que podrías perder en el momento. gessel.ai identifica temas recurrentes, rastrea indicadores de progreso y revela oportunidades terapéuticas.</span>
+          <span data-lang-en>See connections you might miss in the moment. gessel.ai identifies recurring themes, tracks progress indicators, and surfaces therapeutic opportunities.</span>
+        </p>
+      </div>
+
+      <!-- Feature 3: AI Note Generation -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-cyan-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Notas Clínicas en Segundos</span>
+          <span data-lang-en>Clinical Notes in Seconds</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Genera notas de progreso listas para aseguradoras en formatos SOAP, DAP, GIRP, BIRP o personalizados. Terminología alineada con DSM-5 y estándares APA.</span>
+          <span data-lang-en>Generate insurance-ready progress notes in SOAP, DAP, GIRP, BIRP, or custom formats. Terminology aligned with DSM-5 and APA standards.</span>
+        </p>
+      </div>
+
+      <!-- Feature 4: Therapist Dashboard -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Tu Camino de Desarrollo</span>
+          <span data-lang-en>Your Development Journey</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Rastrea tu crecimiento como clínico. Comprende tu estilo terapéutico, observa qué intervenciones funcionan mejor e identifica áreas para educación continua.</span>
+          <span data-lang-en>Track your growth as a clinician. Understand your therapeutic style, see which interventions work best, and identify areas for continuing education.</span>
+        </p>
+      </div>
+
+      <!-- Feature 5: Supervision Mode -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-amber-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Modo Supervisión</span>
+          <span data-lang-en>Supervision Mode</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Supervisores pueden revisar sesiones, rastrear competencias y proporcionar retroalimentación estructurada. Documentación de supervisión que cumple con requisitos de certificación.</span>
+          <span data-lang-en>Supervisors can review sessions, track competencies, and provide structured feedback. Supervision documentation that meets certification requirements.</span>
+        </p>
+      </div>
+
+      <!-- Feature 6: EHR Integration -->
+      <div class="group bg-slate-800/50 border border-slate-700 hover:border-rose-500/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-rose-500/20 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">
+          <span data-lang-es>Integración con EHR</span>
+          <span data-lang-en>EHR Integration</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Exportación con un clic a SimplePractice, TherapyNotes y otros sistemas EHR. Sin copiar y pegar. Tus notas fluyen directamente a tu flujo de trabajo.</span>
+          <span data-lang-en>One-click export to SimplePractice, TherapyNotes, and other EHR systems. No copy-paste. Your notes flow directly into your workflow.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="bg-slate-900 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+        <span class="text-indigo-400 text-sm font-medium">
+          <span data-lang-es>PRECIOS</span>
+          <span data-lang-en>PRICING</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <span data-lang-es>Precios Simples y Transparentes</span>
+        <span data-lang-en>Simple, Transparent Pricing</span>
+      </h2>
+      <p class="text-xl text-slate-400">
+        <span data-lang-es>Comienza gratis. Actualiza cuando estés listo. Sin cargos ocultos.</span>
+        <span data-lang-en>Start free. Upgrade when you are ready. No hidden fees.</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Plan 1: Starter -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-colors">
+        <div class="mb-6">
+          <h3 class="text-xl font-bold text-white mb-2">
+            <span data-lang-es>Inicial</span>
+            <span data-lang-en>Starter</span>
+          </h3>
+          <p class="text-slate-400 text-sm">
+            <span data-lang-es>Perfecto para terapeutas nuevos</span>
+            <span data-lang-en>Perfect for new therapists</span>
+          </p>
+        </div>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$29</span>
+          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
+          <div class="text-slate-500 text-sm mt-1">~$500 MXN/mes</div>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Hasta 50 sesiones/mes</span>
+            <span data-lang-en>Up to 50 sessions/month</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Todos los formatos clínicos</span>
+            <span data-lang-en>All clinical formats</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Exportación EHR</span>
+            <span data-lang-en>EHR export</span>
+          </li>
+        </ul>
+        <button class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+          <span data-lang-es>Comenzar Prueba Gratuita</span>
+          <span data-lang-en>Start Free Trial</span>
+        </button>
+      </div>
+
+      <!-- Plan 2: Professional (Most Popular) -->
+      <div class="relative bg-gradient-to-br from-indigo-500/20 to-violet-500/10 border-2 border-indigo-500/50 rounded-2xl p-8 scale-105 shadow-xl shadow-indigo-500/10">
+        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-1 rounded-full text-sm font-semibold text-white">
+          <span data-lang-es>Más Popular</span>
+          <span data-lang-en>Most Popular</span>
+        </div>
+        <div class="mb-6">
+          <h3 class="text-xl font-bold text-white mb-2">
+            <span data-lang-es>Profesional</span>
+            <span data-lang-en>Professional</span>
+          </h3>
+          <p class="text-slate-400 text-sm">
+            <span data-lang-es>Para consulta privada de tiempo completo</span>
+            <span data-lang-en>For full-time private practice</span>
+          </p>
+        </div>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$59</span>
+          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
+          <div class="text-slate-500 text-sm mt-1">~$1,000 MXN/mes</div>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Sesiones ilimitadas</span>
+            <span data-lang-en>Unlimited sessions</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Reconocimiento de patrones</span>
+            <span data-lang-en>Pattern recognition</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Planes de tratamiento</span>
+            <span data-lang-en>Treatment planning</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Soporte prioritario</span>
+            <span data-lang-en>Priority support</span>
+          </li>
+        </ul>
+        <button class="w-full py-3 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 rounded-xl text-white font-semibold transition-colors">
+          <span data-lang-es>Comenzar Prueba Gratuita</span>
+          <span data-lang-en>Start Free Trial</span>
+        </button>
+      </div>
+
+      <!-- Plan 3: Supervisor -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-colors">
+        <div class="mb-6">
+          <h3 class="text-xl font-bold text-white mb-2">
+            <span data-lang-es>Supervisor</span>
+            <span data-lang-en>Supervisor</span>
+          </h3>
+          <p class="text-slate-400 text-sm">
+            <span data-lang-es>Para supervisores y grupos</span>
+            <span data-lang-en>For supervisors and groups</span>
+          </p>
+        </div>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$99</span>
+          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
+          <div class="text-slate-500 text-sm mt-1">~$1,700 MXN/mes</div>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Todo en Profesional</span>
+            <span data-lang-en>Everything in Professional</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Modo supervisión</span>
+            <span data-lang-en>Supervision mode</span>
+          </li>
+          <li class="flex items-start space-x-3 text-slate-300 text-sm">
+            <svg class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span data-lang-es>Seguimiento de competencias</span>
+            <span data-lang-en>Competency tracking</span>
+          </li>
+        </ul>
+        <button class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+          <span data-lang-es>Contactar Ventas</span>
+          <span data-lang-en>Contact Sales</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Security Section -->
+<section id="security" class="bg-slate-950 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 mb-6">
+        <span class="text-indigo-400 text-sm font-medium">
+          <span data-lang-es>SEGURIDAD</span>
+          <span data-lang-en>SECURITY</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <span data-lang-es>Los Datos de Tus Pacientes</span>
+        <span data-lang-en>Your Clients' Data Stays</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Se Quedan Con Tus Pacientes</span>
+          <span data-lang-en>Your Clients' Data</span>
+        </span>
+      </h2>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+        <span data-lang-es>Construimos gessel.ai con la privacidad como fundamento. Tu confianza y la confidencialidad de tus pacientes no son negociables.</span>
+        <span data-lang-en>We built gessel.ai with privacy as the foundation. Your trust and your clients' confidentiality are non-negotiable.</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Zero Image Retention -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 bg-indigo-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">
+          <span data-lang-es>Cero Retención de Imágenes</span>
+          <span data-lang-en>Zero Image Retention</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Las fotos de tus notas se procesan con OCR y se eliminan inmediatamente. Nunca almacenamos imágenes.</span>
+          <span data-lang-en>Photos of your notes are processed with OCR and immediately deleted. We never store images.</span>
+        </p>
+      </div>
+
+      <!-- HIPAA Compliant -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 bg-violet-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">
+          <span data-lang-es>Cumple con HIPAA</span>
+          <span data-lang-en>HIPAA Compliant</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Salvaguardas técnicas y administrativas completas. BAA disponibles. Infraestructura SOC 2 Tipo II.</span>
+          <span data-lang-en>Full technical and administrative safeguards. BAA available. SOC 2 Type II infrastructure.</span>
+        </p>
+      </div>
+
+      <!-- Encryption -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 bg-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">
+          <span data-lang-es>Encriptación Total</span>
+          <span data-lang-en>Full Encryption</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Encriptación AES de 256 bits en reposo. Encriptación TLS 1.3 en tránsito. Datos protegidos en todo momento.</span>
+          <span data-lang-en>256-bit AES encryption at rest. TLS 1.3 encryption in transit. Data protected at all times.</span>
+        </p>
+      </div>
+
+      <!-- Data Control -->
+      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">
+          <span data-lang-es>Tú Controlas Todo</span>
+          <span data-lang-en>You Control Everything</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Exporta tus datos en cualquier momento. Elimina tu cuenta y todos los datos con un clic.</span>
+          <span data-lang-en>Export your data anytime. Delete your account and all data with one click.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About/Mission Section -->
+<section class="bg-slate-900 py-24">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
+      <span data-lang-es>Nuestra Misión</span>
+      <span data-lang-en>Our Mission</span>
+    </h2>
+    <p class="text-2xl text-slate-300 italic mb-8">
+      <span data-lang-es>"Ayudar a los terapeutas a convertirse en mejores clínicos, no solo en documentadores más rápidos."</span>
+      <span data-lang-en>"To help therapists become better clinicians, not just faster documenters."</span>
+    </p>
+    <p class="text-slate-400 max-w-2xl mx-auto">
+      <span data-lang-es>Inspirado en la Cámara de Gesell —un espejo unidireccional creado para observar sin intervenir— gessel.ai es tu observador inteligente. Más que ahorrar tiempo, te ayuda a detectar lo que podrías pasar por alto, aprender de cada sesión y perfeccionar tu práctica de forma continua.</span>
+      <span data-lang-en>Inspired by the Gesell Chamber —a one-way mirror created to observe without intervening— gessel.ai is your intelligent observer. More than saving time, it helps you detect what you might overlook, learn from each session, and continuously refine your practice.</span>
+    </p>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 py-20">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+      <span data-lang-es>¿Listo para Recuperar Tus Noches?</span>
+      <span data-lang-en>Ready to Get Your Evenings Back?</span>
+    </h2>
+    <p class="text-xl text-indigo-100 mb-10 max-w-2xl mx-auto">
+      <span data-lang-es>Únete a cientos de terapeutas mexicanos que ya han transformado su práctica con gessel.ai.</span>
+      <span data-lang-en>Join hundreds of Mexican therapists who have already transformed their practice with gessel.ai.</span>
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="group bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2">
+        <span data-lang-es>Comienza Tu Prueba Gratuita de 14 Días</span>
+        <span data-lang-en>Start Your 14-Day Free Trial</span>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </button>
+      <button class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/10">
+        <span data-lang-es>Ver Demostración</span>
+        <span data-lang-en>Watch Demo</span>
+      </button>
+    </div>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-6 text-indigo-100 text-sm">
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span data-lang-es>14 días de prueba gratis</span>
+        <span data-lang-en>14-day free trial</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span data-lang-es>Sin tarjeta de crédito</span>
+        <span data-lang-en>No credit card required</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span data-lang-es>Cumple con HIPAA</span>
+        <span data-lang-en>HIPAA compliant</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-950 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <div class="md:col-span-1">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-xl">G</span>
+          </div>
+          <span class="text-2xl font-bold text-white">gessel<span class="text-indigo-400">.ai</span></span>
+        </div>
+        <p class="text-slate-400 mb-4">
+          <span data-lang-es>El observador inteligente para el desarrollo de terapeutas.</span>
+          <span data-lang-en>The intelligent observer for therapist development.</span>
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+          </a>
+          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-4">
+          <span data-lang-es>Producto</span>
+          <span data-lang-en>Product</span>
+        </h4>
+        <ul class="space-y-3">
+          <li><a href="#features" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Características</span><span data-lang-en>Features</span></a></li>
+          <li><a href="#formats" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Formatos Clínicos</span><span data-lang-en>Clinical Formats</span></a></li>
+          <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Precios</span><span data-lang-en>Pricing</span></a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Integraciones</span><span data-lang-en>Integrations</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-4">
+          <span data-lang-es>Recursos</span>
+          <span data-lang-en>Resources</span>
+        </h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Blog</a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Centro de Ayuda</span><span data-lang-en>Help Center</span></a></li>
+          <li><a href="#security" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Cumplimiento HIPAA</span><span data-lang-en>HIPAA Compliance</span></a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Documentación API</span><span data-lang-en>API Docs</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-4">
+          <span data-lang-es>Empresa</span>
+          <span data-lang-en>Company</span>
+        </h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Acerca de</span><span data-lang-en>About</span></a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Empleos</span><span data-lang-en>Careers</span></a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Política de Privacidad</span><span data-lang-en>Privacy Policy</span></a></li>
+          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Términos de Servicio</span><span data-lang-en>Terms of Service</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-slate-500 text-sm">© 2026 gessel.ai. <span data-lang-es>Todos los derechos reservados.</span><span data-lang-en>All rights reserved.</span></p>
+      <div class="flex items-center space-x-6 mt-4 md:mt-0">
+        <span class="text-slate-500 text-sm flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>HIPAA</span>
+        </span>
+        <span class="text-slate-500 text-sm flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>SOC 2 Type II</span>
+        </span>
+        <span class="text-slate-500 text-sm flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>APA</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Language management
+  let currentLang = 'es';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    if (lang === 'en') {
+      document.body.classList.add('lang-en');
+      document.documentElement.lang = 'en';
+      document.title = 'gessel.ai - Finish Your Notes Before Your Next Client Walks In';
+    } else {
+      document.body.classList.remove('lang-en');
+      document.documentElement.lang = 'es-MX';
+      document.title = 'gessel.ai - Termina Tus Notas Antes de que Llegue Tu Siguiente Paciente';
+    }
+    document.getElementById('current-lang').textContent = lang.toUpperCase();
+    document.getElementById('lang-dropdown').classList.add('hidden');
+    localStorage.setItem('gessel-lang', lang);
+  }
+
+  // Load saved language preference
+  const savedLang = localStorage.getItem('gessel-lang');
+  if (savedLang) {
+    setLanguage(savedLang);
+  }
+
+  // Language dropdown toggle
+  document.getElementById('lang-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('lang-dropdown').classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', () => {
+    document.getElementById('lang-dropdown').classList.add('hidden');
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 20) {
+      navbar.classList.add('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg');
+      navbar.classList.remove('bg-transparent');
+    } else {
+      navbar.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg');
+      navbar.classList.add('bg-transparent');
+    }
+  });
+
+  // Mobile menu toggle
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
