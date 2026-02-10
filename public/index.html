@@ -237,7 +237,7 @@
     [data-lang-es-block] { display: block; }
   </style>
 </head>
-<body class="bg-slate-900 text-white antialiased">
+<body class="bg-white text-gray-900 antialiased">
 
 <!-- Navigation -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
@@ -247,23 +247,23 @@
         <div class="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center">
           <span class="text-white font-bold text-xl">G</span>
         </div>
-        <span class="text-2xl font-bold text-white">gessel<span class="text-teal-400">.ai</span></span>
+        <span class="text-2xl font-bold text-gray-900">gessel<span class="text-teal-400">.ai</span></span>
       </div>
 
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#treatment" class="text-slate-300 hover:text-white transition-colors">
+        <a href="#treatment" class="text-gray-600 hover:text-teal-600 transition-colors">
           <span data-lang-es>Producto</span>
           <span data-lang-en>Product</span>
         </a>
-        <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors">
+        <a href="#how-it-works" class="text-gray-600 hover:text-teal-600 transition-colors">
           <span data-lang-es>Cómo Funciona</span>
           <span data-lang-en>How It Works</span>
         </a>
-        <a href="#pricing" class="text-slate-300 hover:text-white transition-colors">
+        <a href="#pricing" class="text-gray-600 hover:text-teal-600 transition-colors">
           <span data-lang-es>Precios</span>
           <span data-lang-en>Pricing</span>
         </a>
-        <a href="#security" class="text-slate-300 hover:text-white transition-colors">
+        <a href="#security" class="text-gray-600 hover:text-teal-600 transition-colors">
           <span data-lang-es>Seguridad</span>
           <span data-lang-en>Security</span>
         </a>
@@ -272,7 +272,7 @@
       <div class="hidden md:flex items-center space-x-4">
         <!-- Language Switcher -->
         <div class="relative">
-          <button id="lang-toggle" class="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-slate-800/50">
+          <button id="lang-toggle" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 transition-colors px-3 py-2 rounded-lg hover:bg-gray-100">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
             </svg>
@@ -281,18 +281,18 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-slate-800 rounded-xl shadow-xl border border-slate-700 overflow-hidden">
-            <button onclick="setLanguage('es')" class="w-full px-4 py-3 text-left text-slate-300 hover:bg-slate-700 hover:text-white flex items-center space-x-3">
+          <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
+            <button onclick="setLanguage('es')" class="w-full px-4 py-3 text-left text-gray-500 hover:bg-gray-50 hover:text-gray-900 flex items-center space-x-3">
               <span class="text-xl">🇲🇽</span>
               <span>Español (MX)</span>
             </button>
-            <button onclick="setLanguage('en')" class="w-full px-4 py-3 text-left text-slate-300 hover:bg-slate-700 hover:text-white flex items-center space-x-3">
+            <button onclick="setLanguage('en')" class="w-full px-4 py-3 text-left text-gray-500 hover:bg-gray-50 hover:text-gray-900 flex items-center space-x-3">
               <span class="text-xl">🇺🇸</span>
               <span>English</span>
             </button>
           </div>
         </div>
-        <button class="text-slate-300 hover:text-white transition-colors px-4 py-2">
+        <button class="text-gray-600 hover:text-teal-600 transition-colors px-4 py-2">
           <span data-lang-es>Iniciar Sesión</span>
           <span data-lang-en>Log In</span>
         </button>
@@ -302,30 +302,30 @@
         </button>
       </div>
 
-      <button id="mobile-menu-btn" class="md:hidden text-white">
+      <button id="mobile-menu-btn" class="md:hidden text-gray-900">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-slate-700 pt-4">
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
       <div class="flex flex-col space-y-4">
-        <a href="#treatment" class="text-slate-300 hover:text-white">
+        <a href="#treatment" class="text-gray-500 hover:text-white">
           <span data-lang-es>Producto</span><span data-lang-en>Product</span>
         </a>
-        <a href="#how-it-works" class="text-slate-300 hover:text-white">
+        <a href="#how-it-works" class="text-gray-500 hover:text-white">
           <span data-lang-es>Cómo Funciona</span><span data-lang-en>How It Works</span>
         </a>
-        <a href="#pricing" class="text-slate-300 hover:text-white">
+        <a href="#pricing" class="text-gray-500 hover:text-white">
           <span data-lang-es>Precios</span><span data-lang-en>Pricing</span>
         </a>
-        <a href="#security" class="text-slate-300 hover:text-white">
+        <a href="#security" class="text-gray-500 hover:text-white">
           <span data-lang-es>Seguridad</span><span data-lang-en>Security</span>
         </a>
         <div class="flex space-x-2 pt-2">
-          <button onclick="setLanguage('es')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇲🇽 ES</button>
-          <button onclick="setLanguage('en')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇺🇸 EN</button>
+          <button onclick="setLanguage('es')" class="px-3 py-2 bg-gray-100 rounded-lg text-sm">🇲🇽 ES</button>
+          <button onclick="setLanguage('en')" class="px-3 py-2 bg-gray-100 rounded-lg text-sm">🇺🇸 EN</button>
         </div>
         <button data-open-modal class="bg-teal-500 text-white px-6 py-2.5 rounded-full font-semibold w-full">
           <span data-lang-es>Comienza Tu Prueba Gratuita</span><span data-lang-en>Start Your Free Trial</span>
@@ -336,19 +336,19 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+<section class="relative min-h-screen bg-gradient-to-br from-teal-50 via-white to-emerald-50 overflow-hidden">
   <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute -top-40 -right-40 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute top-1/2 -left-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s"></div>
-    <div class="absolute bottom-20 right-1/4 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-teal-200/40 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute top-1/2 -left-40 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s"></div>
+    <div class="absolute bottom-20 right-1/4 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s"></div>
   </div>
 
-  <div class="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.06)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
           <span data-lang-es>IA Entrenada para Asistir y</span>
           <span data-lang-en>AI Trained to Assist and</span>
           <br>
@@ -358,7 +358,7 @@
           </span>
         </h1>
 
-        <p class="text-xl text-slate-300 mb-8 max-w-xl">
+        <p class="text-xl text-gray-500 mb-8 max-w-xl">
           <span data-lang-es>Modelos especializados que documentan, planifican y descubren patrones — diseñados por psicólogos clínicos certificados.</span>
           <span data-lang-en>Specialized models that document, plan, and discover patterns — designed by certified clinical psychologists.</span>
         </p>
@@ -371,8 +371,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </button>
-          <button data-open-modal class="group flex items-center justify-center space-x-3 text-white border border-slate-600 hover:border-slate-500 px-8 py-4 rounded-full font-semibold transition-all hover:bg-slate-800/50">
-            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors">
+          <button data-open-modal class="group flex items-center justify-center space-x-3 text-gray-700 border border-gray-300 hover:border-teal-400 px-8 py-4 rounded-full font-semibold transition-all hover:bg-teal-50">
+            <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center group-hover:bg-teal-200 transition-colors">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <polygon points="5 3 19 12 5 21 5 3"/>
               </svg>
@@ -384,37 +384,37 @@
 
         <!-- Clinical Credentials -->
         <div class="flex flex-wrap gap-3 mb-6">
-          <div class="bg-slate-800/50 border border-teal-500/30 rounded-xl px-4 py-2">
-            <span class="text-teal-400 font-bold">HIPAA</span>
-            <span class="text-slate-400 text-sm ml-1">
+          <div class="bg-teal-50 border border-teal-200 rounded-xl px-4 py-2">
+            <span class="text-teal-600 font-bold">HIPAA</span>
+            <span class="text-gray-500 text-sm ml-1">
               <span data-lang-es>Cumple</span>
               <span data-lang-en>Compliant</span>
             </span>
           </div>
-          <div class="bg-slate-800/50 border border-emerald-500/30 rounded-xl px-4 py-2">
-            <span class="text-emerald-400 font-bold">SOC 2</span>
-            <span class="text-slate-400 text-sm ml-1">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2">
+            <span class="text-emerald-600 font-bold">SOC 2</span>
+            <span class="text-gray-500 text-sm ml-1">
               <span data-lang-es>Infraestructura</span>
               <span data-lang-en>Infrastructure</span>
             </span>
           </div>
-          <div class="bg-slate-800/50 border border-amber-500/30 rounded-xl px-4 py-2">
-            <span class="text-amber-400 font-bold">APA</span>
-            <span class="text-slate-400 text-sm ml-1">
+          <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2">
+            <span class="text-amber-600 font-bold">APA</span>
+            <span class="text-gray-500 text-sm ml-1">
               <span data-lang-es>Alineado</span>
               <span data-lang-en>Aligned</span>
             </span>
           </div>
-          <div class="bg-slate-800/50 border border-emerald-500/30 rounded-xl px-4 py-2">
-            <span class="text-emerald-400 font-bold">DSM-5</span>
-            <span class="text-slate-400 text-sm ml-1">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2">
+            <span class="text-emerald-600 font-bold">DSM-5</span>
+            <span class="text-gray-500 text-sm ml-1">
               <span data-lang-es>Compatible</span>
               <span data-lang-en>Compatible</span>
             </span>
           </div>
-          <div class="bg-slate-800/50 border border-amber-500/30 rounded-xl px-4 py-2">
-            <span class="text-amber-400 font-bold"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span></span>
-            <span class="text-slate-400 text-sm ml-1">
+          <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2">
+            <span class="text-amber-600 font-bold"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span></span>
+            <span class="text-gray-500 text-sm ml-1">
               <span data-lang-es>Compatible</span>
               <span data-lang-en>Compatible</span>
             </span>
@@ -425,7 +425,7 @@
 
       <!-- Hero Visual - Cycling Note Formats -->
       <div class="relative animate-float">
-        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6 transform hover:scale-[1.02] transition-transform duration-500">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-gray-200 shadow-2xl p-6 transform hover:scale-[1.02] transition-transform duration-500">
           <!-- Hero Narrative Animation -->
           <div class="hero-narrative" id="hero-narrative">
 
@@ -453,7 +453,7 @@
             </div>
             <div class="flex items-center justify-between mt-4">
               <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
                   <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                   </svg>
@@ -464,8 +464,8 @@
                 </span>
               </div>
               <div class="flex items-center space-x-2">
-                <span class="text-slate-600 text-xs line-through">DSM-5: ???</span>
-                <span class="text-slate-600 text-xs line-through"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: ???</span>
+                <span class="text-gray-300 text-xs line-through">DSM-5: ???</span>
+                <span class="text-gray-300 text-xs line-through"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: ???</span>
               </div>
             </div>
           </div>
@@ -478,12 +478,12 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-teal-400 text-sm font-medium flex items-center space-x-2">
+                <span class="text-teal-600 text-sm font-medium flex items-center space-x-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                   </svg>
                   <span>SOAP</span>
-                  <span class="text-xs text-slate-500 ml-1">
+                  <span class="text-xs text-gray-400 ml-1">
                     <span data-lang-es>generado por IA</span>
                     <span data-lang-en>AI generated</span>
                   </span>
@@ -492,19 +492,19 @@
               <div class="space-y-2">
                 <div class="scene-child bg-teal-500/10 border border-teal-500/20 rounded-lg p-3">
                   <div class="text-teal-400 text-xs font-semibold mb-1">SUBJETIVO</div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta disminución de síntomas ansiosos (PHQ-9: 8 → 5).</span><span data-lang-en>Patient reports decreased anxiety symptoms (PHQ-9: 8 → 5).</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Paciente reporta disminución de síntomas ansiosos (PHQ-9: 8 → 5).</span><span data-lang-en>Patient reports decreased anxiety symptoms (PHQ-9: 8 → 5).</span></p>
                 </div>
                 <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-1">OBJETIVO</div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Afecto congruente, contacto visual adecuado.</span><span data-lang-en>Congruent affect, appropriate eye contact.</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Afecto congruente, contacto visual adecuado.</span><span data-lang-en>Congruent affect, appropriate eye contact.</span></p>
                 </div>
                 <div class="scene-child bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="text-amber-400 text-xs font-semibold mb-1">ANÁLISIS</div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada (F41.1 / 6B00).</span><span data-lang-en>Generalized anxiety disorder (F41.1 / 6B00).</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada (F41.1 / 6B00).</span><span data-lang-en>Generalized anxiety disorder (F41.1 / 6B00).</span></p>
                 </div>
                 <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Revisar diario de pensamientos.</span><span data-lang-en>Continue weekly CBT. Review thought journal.</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Continuar TCC semanal. Revisar diario de pensamientos.</span><span data-lang-en>Continue weekly CBT. Review thought journal.</span></p>
                 </div>
               </div>
               <div class="flex items-center justify-between mt-3">
@@ -524,7 +524,7 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-emerald-400 text-sm font-medium flex items-center space-x-2">
+                <span class="text-emerald-600 text-sm font-medium flex items-center space-x-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                   </svg>
@@ -534,15 +534,15 @@
               </div>
               <div class="space-y-2">
                 <div class="scene-child bg-slate-700/30 rounded-lg p-3">
-                  <div class="text-slate-500 text-xs mb-1"><span data-lang-es>Diagnóstico</span><span data-lang-en>Diagnosis</span></div>
-                  <p class="text-white text-sm font-medium"><span data-lang-es>Trastorno de Ansiedad Generalizada</span><span data-lang-en>Generalized Anxiety Disorder</span> <span class="text-slate-400">F41.1 / 6B00</span></p>
+                  <div class="text-gray-400 text-xs mb-1"><span data-lang-es>Diagnóstico</span><span data-lang-en>Diagnosis</span></div>
+                  <p class="text-white text-sm font-medium"><span data-lang-es>Trastorno de Ansiedad Generalizada</span><span data-lang-en>Generalized Anxiety Disorder</span> <span class="text-gray-500">F41.1 / 6B00</span></p>
                 </div>
                 <div class="scene-child bg-teal-500/10 border border-teal-500/20 rounded-lg p-3">
                   <div class="flex items-center space-x-2 mb-1">
                     <span class="w-5 h-5 bg-teal-500 text-white text-xs font-bold rounded flex items-center justify-center">S</span>
                     <span class="text-teal-400 text-xs font-semibold"><span data-lang-es>META SMART</span><span data-lang-en>SMART GOAL</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Reducir ataques de pánico de 4/sem a ≤1/sem en 8 semanas</span><span data-lang-en>Reduce panic attacks from 4/wk to ≤1/wk in 8 weeks</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Reducir ataques de pánico de 4/sem a ≤1/sem en 8 semanas</span><span data-lang-en>Reduce panic attacks from 4/wk to ≤1/wk in 8 weeks</span></p>
                 </div>
                 <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-1"><span data-lang-es>INTERVENCIONES RECOMENDADAS</span><span data-lang-en>RECOMMENDED INTERVENTIONS</span></div>
@@ -573,7 +573,7 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-emerald-400 text-sm font-medium flex items-center space-x-2">
+                <span class="text-emerald-600 text-sm font-medium flex items-center space-x-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                   </svg>
@@ -595,11 +595,11 @@
                 </div>
                 <div class="scene-child bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>CONEXIÓN DETECTADA</span><span data-lang-en>CONNECTION DETECTED</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
                 </div>
                 <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-2"><span data-lang-es>SUGERENCIA TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC SUGGESTION</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Explorar dinámica de autoridad y experiencias con figuras de poder</span><span data-lang-en>Explore authority dynamics and experiences with power figures</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Explorar dinámica de autoridad y experiencias con figuras de poder</span><span data-lang-en>Explore authority dynamics and experiences with power figures</span></p>
                 </div>
               </div>
             </div>
@@ -616,29 +616,29 @@
 
         </div>
 
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-500/20 to-transparent rounded-2xl blur-xl"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-200/40 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-200/40 to-transparent rounded-full blur-xl"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Value Proposition Cards -->
-<section class="bg-slate-900 py-20">
+<section class="bg-gray-50 py-20">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-3 gap-8">
       <!-- Card 1: Plan -->
       <div class="group relative bg-gradient-to-br from-teal-500/20 to-teal-500/5 border border-teal-500/20 hover:border-teal-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-        <div class="text-teal-400 mb-6">
+        <div class="text-teal-500 mb-6">
           <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Planifica con IA Especializada</span>
           <span data-lang-en>Plan with Specialized AI</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>Genera planes de tratamiento completos con objetivos SMART y hojas de ruta sesión por sesión desde la primera evaluación. De la evaluación al plan en segundos.</span>
           <span data-lang-en>Generate complete treatment plans with SMART goals and session-by-session roadmaps from the first assessment. From evaluation to plan in seconds.</span>
         </p>
@@ -646,16 +646,16 @@
 
       <!-- Card 2: Document -->
       <div class="group relative bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 hover:border-emerald-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-        <div class="text-emerald-400 mb-6">
+        <div class="text-emerald-500 mb-6">
           <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Documenta en Segundos</span>
           <span data-lang-en>Document in Seconds</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>Genera notas clínicas profesionales en formatos SOAP, DAP, BIRP o GIRP con codificación DSM-5/CIE-11 automática. Listas para aseguradoras y tu EHR.</span>
           <span data-lang-en>Generate professional clinical notes in SOAP, DAP, BIRP, or GIRP formats with automatic DSM-5/ICD-11 coding. Ready for insurance and your EHR.</span>
         </p>
@@ -663,16 +663,16 @@
 
       <!-- Card 3: Discover -->
       <div class="group relative bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/20 hover:border-amber-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-        <div class="text-amber-400 mb-6">
+        <div class="text-amber-500 mb-6">
           <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Descubre Patrones Ocultos</span>
           <span data-lang-en>Discover Hidden Patterns</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>gessel.ai identifica temas recurrentes entre sesiones, rastrea el progreso objetivo de tus pacientes y revela oportunidades terapéuticas que el ritmo clínico puede ocultar.</span>
           <span data-lang-en>gessel.ai identifies recurring themes across sessions, tracks your clients' objective progress, and reveals therapeutic opportunities the clinical pace can hide.</span>
         </p>
@@ -682,18 +682,18 @@
 </section>
 
 <!-- Treatment Plan Workflow Section -->
-<section id="treatment" class="bg-slate-950 py-24">
+<section id="treatment" class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Text Content -->
       <div>
-        <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-          <span class="text-emerald-400 text-sm font-medium">
+        <div class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-2 mb-6">
+          <span class="text-emerald-600 text-sm font-medium">
             <span data-lang-es>PLANES DE TRATAMIENTO</span>
             <span data-lang-en>TREATMENT PLANS</span>
           </span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           <span data-lang-es>De la Evaluación al</span>
           <span data-lang-en>From Assessment to</span>
           <br>
@@ -702,36 +702,36 @@
             <span data-lang-en>Complete Plan in Seconds</span>
           </span>
         </h2>
-        <p class="text-xl text-slate-400 mb-8">
+        <p class="text-xl text-gray-500 mb-8">
           <span data-lang-es>gessel.ai toma la información de tu primera sesión y genera automáticamente un plan de tratamiento completo con objetivos SMART y un plan sesión por sesión.</span>
           <span data-lang-en>gessel.ai takes your first session information and automatically generates a complete treatment plan with SMART goals and a session-by-session roadmap.</span>
         </p>
         <div class="space-y-4">
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <span class="text-amber-400 font-bold text-sm">1</span>
+            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-amber-600 font-bold text-sm">1</span>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Ingresa Evaluación Inicial</span><span data-lang-en>Enter Initial Assessment</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Síntomas, diagnóstico, puntuaciones basales, historia relevante</span><span data-lang-en>Symptoms, diagnosis, baseline scores, relevant history</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Ingresa Evaluación Inicial</span><span data-lang-en>Enter Initial Assessment</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Síntomas, diagnóstico, puntuaciones basales, historia relevante</span><span data-lang-en>Symptoms, diagnosis, baseline scores, relevant history</span></p>
             </div>
           </div>
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-teal-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <span class="text-teal-400 font-bold text-sm">2</span>
+            <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-teal-600 font-bold text-sm">2</span>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Genera Objetivos SMART</span><span data-lang-en>Generate SMART Goals</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Metas específicas, medibles, alcanzables, relevantes y temporales</span><span data-lang-en>Specific, measurable, achievable, relevant, and time-bound goals</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Genera Objetivos SMART</span><span data-lang-en>Generate SMART Goals</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Metas específicas, medibles, alcanzables, relevantes y temporales</span><span data-lang-en>Specific, measurable, achievable, relevant, and time-bound goals</span></p>
             </div>
           </div>
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <span class="text-emerald-400 font-bold text-sm">3</span>
+            <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="text-emerald-600 font-bold text-sm">3</span>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Plan Sesión por Sesión</span><span data-lang-en>Session-by-Session Plan</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Técnicas basadas en evidencia, tareas para casa, objetivos por sesión</span><span data-lang-en>Evidence-based techniques, homework, objectives per session</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Plan Sesión por Sesión</span><span data-lang-en>Session-by-Session Plan</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Técnicas basadas en evidencia, tareas para casa, objetivos por sesión</span><span data-lang-en>Evidence-based techniques, homework, objectives per session</span></p>
             </div>
           </div>
         </div>
@@ -739,13 +739,13 @@
 
       <!-- Treatment Plan Animation Visual -->
       <div class="relative">
-        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-gray-200 shadow-2xl p-6">
           <div class="smart-container" data-carousel="smart" data-interval="4000">
 
             <!-- Step 1: Initial Assessment Input -->
             <div class="smart-1 active">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 1: Evaluación Inicial</span><span data-lang-en>Step 1: Initial Assessment</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Paso 1: Evaluación Inicial</span><span data-lang-en>Step 1: Initial Assessment</span></span>
                 <span class="text-amber-400 text-sm font-medium">
                   <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                   <span data-lang-es>Entrada</span><span data-lang-en>Input</span>
@@ -754,15 +754,15 @@
               <div class="space-y-2">
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>PROBLEMA PRINCIPAL</span><span data-lang-en>PRESENTING PROBLEM</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Ansiedad en situaciones laborales, ataques de pánico frecuentes, evitación de reuniones</span><span data-lang-en>Anxiety in work situations, frequent panic attacks, meeting avoidance</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Ansiedad en situaciones laborales, ataques de pánico frecuentes, evitación de reuniones</span><span data-lang-en>Anxiety in work situations, frequent panic attacks, meeting avoidance</span></p>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                   <div class="bg-slate-700/30 rounded-lg p-2">
-                    <div class="text-slate-500 text-xs"><span data-lang-es>Diagnóstico</span><span data-lang-en>Diagnosis</span></div>
+                    <div class="text-gray-400 text-xs"><span data-lang-es>Diagnóstico</span><span data-lang-en>Diagnosis</span></div>
                     <p class="text-white text-sm font-medium">F41.1 / 6B00</p>
                   </div>
                   <div class="bg-slate-700/30 rounded-lg p-2">
-                    <div class="text-slate-500 text-xs"><span data-lang-es>Duración</span><span data-lang-en>Duration</span></div>
+                    <div class="text-gray-400 text-xs"><span data-lang-es>Duración</span><span data-lang-en>Duration</span></div>
                     <p class="text-white text-sm font-medium"><span data-lang-es>6 meses</span><span data-lang-en>6 months</span></p>
                   </div>
                 </div>
@@ -777,8 +777,8 @@
                   </div>
                 </div>
                 <div class="bg-slate-700/30 rounded-lg p-2">
-                  <div class="text-slate-500 text-xs"><span data-lang-es>Gatillos identificados</span><span data-lang-en>Identified triggers</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Reuniones con supervisora, presentaciones, fechas límite</span><span data-lang-en>Meetings with supervisor, presentations, deadlines</span></p>
+                  <div class="text-gray-400 text-xs"><span data-lang-es>Gatillos identificados</span><span data-lang-en>Identified triggers</span></div>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Reuniones con supervisora, presentaciones, fechas límite</span><span data-lang-en>Meetings with supervisor, presentations, deadlines</span></p>
                 </div>
               </div>
             </div>
@@ -786,8 +786,8 @@
             <!-- Step 2: SMART Goals Generated -->
             <div class="smart-2">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 2: Objetivos SMART</span><span data-lang-en>Step 2: SMART Goals</span></span>
-                <span class="text-teal-400 text-sm font-medium">
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Paso 2: Objetivos SMART</span><span data-lang-en>Step 2: SMART Goals</span></span>
+                <span class="text-teal-600 text-sm font-medium">
                   <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                   <span data-lang-es>IA</span><span data-lang-en>AI</span>
                 </span>
@@ -798,31 +798,31 @@
                     <span class="w-5 h-5 bg-teal-500 text-white text-xs font-bold rounded flex items-center justify-center">S</span>
                     <span class="text-teal-400 text-xs font-semibold"><span data-lang-es>ESPECÍFICO</span><span data-lang-en>SPECIFIC</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Reducir ataques de pánico en situaciones laborales</span><span data-lang-en>Reduce panic attacks in work situations</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Reducir ataques de pánico en situaciones laborales</span><span data-lang-en>Reduce panic attacks in work situations</span></p>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="flex items-center space-x-2 mb-1">
                     <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded flex items-center justify-center">M</span>
                     <span class="text-emerald-400 text-xs font-semibold"><span data-lang-es>MEDIBLE</span><span data-lang-en>MEASURABLE</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>GAD-7: 16→<8 | Pánico: 4/sem→≤1/sem</span><span data-lang-en>GAD-7: 16→<8 | Panic: 4/wk→≤1/wk</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>GAD-7: 16→<8 | Pánico: 4/sem→≤1/sem</span><span data-lang-en>GAD-7: 16→<8 | Panic: 4/wk→≤1/wk</span></p>
                 </div>
                 <div class="grid grid-cols-3 gap-2">
                   <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                     <span class="w-4 h-4 bg-amber-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">A</span>
-                    <p class="text-slate-300 text-xs"><span data-lang-es>TCC semanal</span><span data-lang-en>Weekly CBT</span></p>
+                    <p class="text-gray-500 text-xs"><span data-lang-es>TCC semanal</span><span data-lang-en>Weekly CBT</span></p>
                   </div>
                   <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                     <span class="w-4 h-4 bg-amber-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">R</span>
-                    <p class="text-slate-300 text-xs"><span data-lang-es>Empleo</span><span data-lang-en>Job</span></p>
+                    <p class="text-gray-500 text-xs"><span data-lang-es>Empleo</span><span data-lang-en>Job</span></p>
                   </div>
                   <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                     <span class="w-4 h-4 bg-emerald-500 text-white text-xs font-bold rounded flex items-center justify-center mb-1">T</span>
-                    <p class="text-slate-300 text-xs"><span data-lang-es>8 sem</span><span data-lang-en>8 wks</span></p>
+                    <p class="text-gray-500 text-xs"><span data-lang-es>8 sem</span><span data-lang-en>8 wks</span></p>
                   </div>
                 </div>
                 <div class="bg-slate-700/30 rounded-lg p-2">
-                  <div class="text-slate-500 text-xs mb-1"><span data-lang-es>Intervenciones recomendadas</span><span data-lang-en>Recommended interventions</span></div>
+                  <div class="text-gray-400 text-xs mb-1"><span data-lang-es>Intervenciones recomendadas</span><span data-lang-en>Recommended interventions</span></div>
                   <div class="flex flex-wrap gap-1">
                     <span class="bg-teal-500/20 text-teal-300 text-xs px-2 py-0.5 rounded"><span data-lang-es>Respiración</span><span data-lang-en>Breathing</span></span>
                     <span class="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-0.5 rounded"><span data-lang-es>Reestructuración</span><span data-lang-en>Restructuring</span></span>
@@ -835,8 +835,8 @@
             <!-- Step 3: Session-by-Session Plan -->
             <div class="smart-3">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Paso 3: Plan por Sesión</span><span data-lang-en>Step 3: Session Plan</span></span>
-                <span class="text-emerald-400 text-sm font-medium">8 <span data-lang-es>sesiones</span><span data-lang-en>sessions</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Paso 3: Plan por Sesión</span><span data-lang-en>Step 3: Session Plan</span></span>
+                <span class="text-emerald-600 text-sm font-medium">8 <span data-lang-es>sesiones</span><span data-lang-en>sessions</span></span>
               </div>
               <div class="space-y-2 text-xs">
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
@@ -844,49 +844,49 @@
                     <span class="w-5 h-5 bg-teal-500 text-white text-xs font-bold rounded-full flex items-center justify-center">1</span>
                     <span class="text-white"><span data-lang-es>Evaluación y Psicoeducación</span><span data-lang-en>Assessment & Psychoeducation</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Rapport, modelo TCC</span><span data-lang-en>Rapport, CBT model</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Rapport, modelo TCC</span><span data-lang-en>Rapport, CBT model</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-teal-500 text-white text-xs font-bold rounded-full flex items-center justify-center">2</span>
                     <span class="text-white"><span data-lang-es>Técnicas de Relajación</span><span data-lang-en>Relaxation Techniques</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Respiración, RMP</span><span data-lang-en>Breathing, PMR</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Respiración, RMP</span><span data-lang-en>Breathing, PMR</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">3</span>
                     <span class="text-white"><span data-lang-es>Modelo Cognitivo</span><span data-lang-en>Cognitive Model</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Pensamientos automáticos</span><span data-lang-en>Automatic thoughts</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Pensamientos automáticos</span><span data-lang-en>Automatic thoughts</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">4</span>
                     <span class="text-white"><span data-lang-es>Reestructuración Cognitiva</span><span data-lang-en>Cognitive Restructuring</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Registro ABC</span><span data-lang-en>ABC record</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Registro ABC</span><span data-lang-en>ABC record</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-amber-500 text-white text-xs font-bold rounded-full flex items-center justify-center">5</span>
                     <span class="text-white"><span data-lang-es>Exposición Gradual I</span><span data-lang-en>Gradual Exposure I</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Jerarquía, nivel 1-2</span><span data-lang-en>Hierarchy, level 1-2</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Jerarquía, nivel 1-2</span><span data-lang-en>Hierarchy, level 1-2</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-amber-500 text-white text-xs font-bold rounded-full flex items-center justify-center">6</span>
                     <span class="text-white"><span data-lang-es>Exposición Gradual II</span><span data-lang-en>Gradual Exposure II</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Nivel 3-4</span><span data-lang-en>Level 3-4</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Nivel 3-4</span><span data-lang-en>Level 3-4</span></span>
                 </div>
                 <div class="bg-slate-700/50 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">7</span>
                     <span class="text-white"><span data-lang-es>Exposición In Vivo</span><span data-lang-en>In Vivo Exposure</span></span>
                   </div>
-                  <span class="text-slate-400"><span data-lang-es>Situación real</span><span data-lang-en>Real situation</span></span>
+                  <span class="text-gray-500"><span data-lang-es>Situación real</span><span data-lang-en>Real situation</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
@@ -901,13 +901,13 @@
             <!-- Step 4: Single Session Detail -->
             <div class="smart-4">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Detalle: Sesión 4</span><span data-lang-en>Detail: Session 4</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Detalle: Sesión 4</span><span data-lang-en>Detail: Session 4</span></span>
                 <span class="text-rose-400 text-sm font-medium"><span data-lang-es>Reestructuración</span><span data-lang-en>Restructuring</span></span>
               </div>
               <div class="space-y-2">
                 <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3">
                   <div class="text-rose-400 text-xs font-semibold mb-1"><span data-lang-es>OBJETIVOS DE SESIÓN</span><span data-lang-en>SESSION OBJECTIVES</span></div>
-                  <ul class="text-slate-300 text-sm space-y-1">
+                  <ul class="text-gray-500 text-sm space-y-1">
                     <li>• <span data-lang-es>Revisar tarea de respiración</span><span data-lang-en>Review breathing homework</span></li>
                     <li>• <span data-lang-es>Enseñar registro de pensamientos ABC</span><span data-lang-en>Teach ABC thought recording</span></li>
                     <li>• <span data-lang-es>Identificar distorsiones cognitivas</span><span data-lang-en>Identify cognitive distortions</span></li>
@@ -923,11 +923,11 @@
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="text-amber-400 text-xs font-semibold mb-1"><span data-lang-es>TAREA PARA CASA</span><span data-lang-en>HOMEWORK</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Completar 5 registros ABC durante la semana. Identificar pensamientos en reuniones.</span><span data-lang-en>Complete 5 ABC records during the week. Identify thoughts in meetings.</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Completar 5 registros ABC durante la semana. Identificar pensamientos en reuniones.</span><span data-lang-en>Complete 5 ABC records during the week. Identify thoughts in meetings.</span></p>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-1"><span data-lang-es>SIGUIENTE SESIÓN</span><span data-lang-en>NEXT SESSION</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Revisar registros, comenzar jerarquía de exposición</span><span data-lang-en>Review records, begin exposure hierarchy</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Revisar registros, comenzar jerarquía de exposición</span><span data-lang-en>Review records, begin exposure hierarchy</span></p>
                 </div>
               </div>
             </div>
@@ -943,26 +943,26 @@
 
         </div>
 
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-2xl blur-xl"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-500/20 to-transparent rounded-full blur-xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-emerald-200/40 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-200/40 to-transparent rounded-full blur-xl"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Clinical Note Formats Section -->
-<section id="formats" class="bg-slate-900 py-24">
+<section id="formats" class="bg-gray-50 py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Text & Format Cards -->
       <div class="order-2 lg:order-2">
-        <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-4 py-2 mb-6">
-          <span class="text-teal-400 text-sm font-medium">
+        <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+          <span class="text-teal-600 text-sm font-medium">
             <span data-lang-es>FORMATOS CLÍNICOS</span>
             <span data-lang-en>CLINICAL FORMATS</span>
           </span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           <span data-lang-es>Genera Notas en</span>
           <span data-lang-en>Generate Notes in</span>
           <br>
@@ -971,39 +971,39 @@
             <span data-lang-en>Your Preferred Format</span>
           </span>
         </h2>
-        <p class="text-xl text-slate-400 mb-8">
+        <p class="text-xl text-gray-500 mb-8">
           <span data-lang-es>Documentación estructurada que cumple con estándares profesionales</span>
           <span data-lang-en>Structured documentation that meets professional standards</span>
         </p>
 
         <div class="grid grid-cols-2 gap-4">
-          <div class="bg-slate-800/50 border border-slate-700 hover:border-teal-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-teal-500/10">
-            <div class="text-2xl font-bold text-teal-400 mb-2">SOAP</div>
-            <p class="text-xs text-slate-400">
+          <div class="bg-white border border-gray-200 hover:border-teal-400 shadow-sm rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-teal-500/10">
+            <div class="text-2xl font-bold text-teal-600 mb-2">SOAP</div>
+            <p class="text-xs text-gray-500">
               <span data-lang-es>Subjetivo, Objetivo, Análisis, Plan</span>
               <span data-lang-en>Subjective, Objective, Assessment, Plan</span>
             </p>
           </div>
 
-          <div class="bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
-            <div class="text-2xl font-bold text-emerald-400 mb-2">DAP</div>
-            <p class="text-xs text-slate-400">
+          <div class="bg-white border border-gray-200 hover:border-emerald-400 shadow-sm rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
+            <div class="text-2xl font-bold text-emerald-600 mb-2">DAP</div>
+            <p class="text-xs text-gray-500">
               <span data-lang-es>Datos, Análisis, Plan</span>
               <span data-lang-en>Data, Assessment, Plan</span>
             </p>
           </div>
 
-          <div class="bg-slate-800/50 border border-slate-700 hover:border-amber-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-amber-500/10">
-            <div class="text-2xl font-bold text-amber-400 mb-2">BIRP</div>
-            <p class="text-xs text-slate-400">
+          <div class="bg-white border border-gray-200 hover:border-amber-400 shadow-sm rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-amber-500/10">
+            <div class="text-2xl font-bold text-amber-600 mb-2">BIRP</div>
+            <p class="text-xs text-gray-500">
               <span data-lang-es>Comportamiento, Intervención, Respuesta, Plan</span>
               <span data-lang-en>Behavior, Intervention, Response, Plan</span>
             </p>
           </div>
 
-          <div class="bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
-            <div class="text-2xl font-bold text-emerald-400 mb-2">GIRP</div>
-            <p class="text-xs text-slate-400">
+          <div class="bg-white border border-gray-200 hover:border-emerald-400 shadow-sm rounded-xl p-4 transition-all hover:shadow-lg hover:shadow-emerald-500/10">
+            <div class="text-2xl font-bold text-emerald-600 mb-2">GIRP</div>
+            <p class="text-xs text-gray-500">
               <span data-lang-es>Metas, Intervención, Respuesta, Plan</span>
               <span data-lang-en>Goals, Intervention, Response, Plan</span>
             </p>
@@ -1013,7 +1013,7 @@
 
       <!-- Note Formats Animation -->
       <div class="relative order-1 lg:order-1">
-        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-gray-200 shadow-2xl p-6">
           <div class="formats-container" data-carousel="section-formats" data-interval="4000">
 
             <!-- Format 0: Raw Unstructured Notes -->
@@ -1040,7 +1040,7 @@
               </div>
               <div class="flex items-center justify-between mt-4">
                 <span class="text-amber-400 text-sm"><span data-lang-es>Sin formato</span><span data-lang-en>Unformatted</span></span>
-                <span class="text-slate-600 text-xs line-through">DSM-5 / <span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span></span>
+                <span class="text-gray-300 text-xs line-through">DSM-5 / <span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span></span>
               </div>
             </div>
 
@@ -1052,24 +1052,24 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-teal-400 text-sm font-medium">SOAP</span>
+                <span class="text-teal-600 text-sm font-medium">SOAP</span>
               </div>
               <div class="space-y-2">
                 <div class="bg-teal-500/10 border border-teal-500/20 rounded-lg p-2">
                   <span class="text-teal-400 text-xs font-semibold">S:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Reporta disminución de ansiedad (PHQ-9: 8→5)</span><span data-lang-en>Reports decreased anxiety (PHQ-9: 8→5)</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Reporta disminución de ansiedad (PHQ-9: 8→5)</span><span data-lang-en>Reports decreased anxiety (PHQ-9: 8→5)</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">O:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Afecto congruente, contacto visual adecuado</span><span data-lang-en>Congruent affect, appropriate eye contact</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Afecto congruente, contacto visual adecuado</span><span data-lang-en>Congruent affect, appropriate eye contact</span></span>
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                   <span class="text-amber-400 text-xs font-semibold">A:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>TAG con respuesta positiva a TCC</span><span data-lang-en>GAD with positive CBT response</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>TAG con respuesta positiva a TCC</span><span data-lang-en>GAD with positive CBT response</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">P:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Continuar TCC, revisar diario</span><span data-lang-en>Continue CBT, review journal</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Continuar TCC, revisar diario</span><span data-lang-en>Continue CBT, review journal</span></span>
                 </div>
               </div>
               <div class="flex items-center justify-between mt-4">
@@ -1086,20 +1086,20 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-emerald-400 text-sm font-medium">DAP</span>
+                <span class="text-emerald-600 text-sm font-medium">DAP</span>
               </div>
               <div class="space-y-2">
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <span class="text-emerald-400 text-xs font-semibold">D:</span>
-                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>Paciente reporta mejoría. PHQ-9: 8→5. Afecto congruente, buen contacto visual.</span><span data-lang-en>Patient reports improvement. PHQ-9: 8→5. Congruent affect, good eye contact.</span></span>
+                  <span class="text-gray-500 text-sm ml-1"><span data-lang-es>Paciente reporta mejoría. PHQ-9: 8→5. Afecto congruente, buen contacto visual.</span><span data-lang-en>Patient reports improvement. PHQ-9: 8→5. Congruent affect, good eye contact.</span></span>
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <span class="text-amber-400 text-xs font-semibold">A:</span>
-                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>TAG con respuesta positiva al tratamiento.</span><span data-lang-en>GAD with positive treatment response.</span></span>
+                  <span class="text-gray-500 text-sm ml-1"><span data-lang-es>TAG con respuesta positiva al tratamiento.</span><span data-lang-en>GAD with positive treatment response.</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <span class="text-emerald-400 text-xs font-semibold">P:</span>
-                  <span class="text-slate-300 text-sm ml-1"><span data-lang-es>Continuar TCC semanal. Revisar diario próxima sesión.</span><span data-lang-en>Continue weekly CBT. Review journal next session.</span></span>
+                  <span class="text-gray-500 text-sm ml-1"><span data-lang-es>Continuar TCC semanal. Revisar diario próxima sesión.</span><span data-lang-en>Continue weekly CBT. Review journal next session.</span></span>
                 </div>
               </div>
               <div class="flex items-center justify-between mt-4">
@@ -1121,19 +1121,19 @@
               <div class="space-y-2">
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                   <span class="text-amber-400 text-xs font-semibold">B:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Puntual, afecto congruente, reporta menos ansiedad</span><span data-lang-en>On time, congruent affect, reports less anxiety</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Puntual, afecto congruente, reporta menos ansiedad</span><span data-lang-en>On time, congruent affect, reports less anxiety</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">I:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Reestructuración cognitiva, respiración diafragmática</span><span data-lang-en>Cognitive restructuring, diaphragmatic breathing</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Reestructuración cognitiva, respiración diafragmática</span><span data-lang-en>Cognitive restructuring, diaphragmatic breathing</span></span>
                 </div>
                 <div class="bg-teal-500/10 border border-teal-500/20 rounded-lg p-2">
                   <span class="text-teal-400 text-xs font-semibold">R:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Receptiva, practica técnicas. PHQ-9: 8→5</span><span data-lang-en>Receptive, practices techniques. PHQ-9: 8→5</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Receptiva, practica técnicas. PHQ-9: 8→5</span><span data-lang-en>Receptive, practices techniques. PHQ-9: 8→5</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">P:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Continuar TCC, tarea: diario de pensamientos</span><span data-lang-en>Continue CBT, homework: thought journal</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Continuar TCC, tarea: diario de pensamientos</span><span data-lang-en>Continue CBT, homework: thought journal</span></span>
                 </div>
               </div>
               <div class="flex items-center justify-between mt-4">
@@ -1150,24 +1150,24 @@
                   <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <span class="text-emerald-400 text-sm font-medium">GIRP</span>
+                <span class="text-emerald-600 text-sm font-medium">GIRP</span>
               </div>
               <div class="space-y-2">
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">G:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Reducir ansiedad. Meta: PHQ-9 < 5 en 8 semanas</span><span data-lang-en>Reduce anxiety. Goal: PHQ-9 < 5 in 8 weeks</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Reducir ansiedad. Meta: PHQ-9 < 5 en 8 semanas</span><span data-lang-en>Reduce anxiety. Goal: PHQ-9 < 5 in 8 weeks</span></span>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
                   <span class="text-emerald-400 text-xs font-semibold">I:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>TCC, reestructuración cognitiva, exposición gradual</span><span data-lang-en>CBT, cognitive restructuring, gradual exposure</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>TCC, reestructuración cognitiva, exposición gradual</span><span data-lang-en>CBT, cognitive restructuring, gradual exposure</span></span>
                 </div>
                 <div class="bg-teal-500/10 border border-teal-500/20 rounded-lg p-2">
                   <span class="text-teal-400 text-xs font-semibold">R:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Progreso: PHQ-9 8→5. Mejoría en regulación</span><span data-lang-en>Progress: PHQ-9 8→5. Improved regulation</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Progreso: PHQ-9 8→5. Mejoría en regulación</span><span data-lang-en>Progress: PHQ-9 8→5. Improved regulation</span></span>
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2">
                   <span class="text-amber-400 text-xs font-semibold">P:</span>
-                  <span class="text-slate-300 text-xs ml-1"><span data-lang-es>Continuar, próxima: revisar diario de pensamientos</span><span data-lang-en>Continue, next: review thought journal</span></span>
+                  <span class="text-gray-500 text-xs ml-1"><span data-lang-es>Continuar, próxima: revisar diario de pensamientos</span><span data-lang-en>Continue, next: review thought journal</span></span>
                 </div>
               </div>
               <div class="flex items-center justify-between mt-4">
@@ -1187,27 +1187,27 @@
 
         </div>
 
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-500/20 to-transparent rounded-2xl blur-xl"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-200/40 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-200/40 to-transparent rounded-full blur-xl"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Insights Between Sessions Section -->
-<section class="bg-slate-950 py-24">
+<section class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Insights Animation Visual -->
       <div class="relative order-2 lg:order-2">
-        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6">
+        <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-gray-200 shadow-2xl p-6">
           <div class="insights-container" data-carousel="insights" data-interval="5000">
 
             <!-- Insight 1: Pattern Detection -->
             <div class="insight-1 active">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Análisis de Patrones</span><span data-lang-en>Pattern Analysis</span></span>
-                <span class="text-emerald-400 text-sm font-medium"><span data-lang-es>12 sesiones</span><span data-lang-en>12 sessions</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Análisis de Patrones</span><span data-lang-en>Pattern Analysis</span></span>
+                <span class="text-emerald-600 text-sm font-medium"><span data-lang-es>12 sesiones</span><span data-lang-en>12 sessions</span></span>
               </div>
               <div class="space-y-3">
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
@@ -1223,11 +1223,11 @@
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>CONEXIÓN DETECTADA</span><span data-lang-en>CONNECTION DETECTED</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Los episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Los episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="text-emerald-400 text-xs font-semibold mb-2"><span data-lang-es>SUGERENCIA TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC SUGGESTION</span></div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Considerar explorar dinámica de autoridad y experiencias previas con figuras de poder</span><span data-lang-en>Consider exploring authority dynamics and past experiences with power figures</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Considerar explorar dinámica de autoridad y experiencias previas con figuras de poder</span><span data-lang-en>Consider exploring authority dynamics and past experiences with power figures</span></p>
                 </div>
               </div>
             </div>
@@ -1235,12 +1235,12 @@
             <!-- Insight 2: Progress Timeline -->
             <div class="insight-2">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Línea de Progreso</span><span data-lang-en>Progress Timeline</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Línea de Progreso</span><span data-lang-en>Progress Timeline</span></span>
                 <span class="text-amber-400 text-sm font-medium">PHQ-9 / GAD-7</span>
               </div>
               <div class="space-y-3">
                 <div class="bg-slate-700/30 rounded-lg p-3">
-                  <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                  <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
                     <span><span data-lang-es>Sesión 1</span><span data-lang-en>Session 1</span></span>
                     <span><span data-lang-es>Sesión 12</span><span data-lang-en>Session 12</span></span>
                   </div>
@@ -1262,15 +1262,15 @@
                 <div class="grid grid-cols-3 gap-2">
                   <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 text-center">
                     <div class="text-emerald-400 text-lg font-bold">72%</div>
-                    <div class="text-slate-400 text-xs"><span data-lang-es>Reducción de síntomas</span><span data-lang-en>Symptom reduction</span></div>
+                    <div class="text-gray-500 text-xs"><span data-lang-es>Reducción de síntomas</span><span data-lang-en>Symptom reduction</span></div>
                   </div>
                   <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 text-center">
                     <div class="text-amber-400 text-lg font-bold">4/5</div>
-                    <div class="text-slate-400 text-xs"><span data-lang-es>Metas logradas</span><span data-lang-en>Goals achieved</span></div>
+                    <div class="text-gray-500 text-xs"><span data-lang-es>Metas logradas</span><span data-lang-en>Goals achieved</span></div>
                   </div>
                   <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 text-center">
                     <div class="text-emerald-400 text-lg font-bold">+3</div>
-                    <div class="text-slate-400 text-xs"><span data-lang-es>Sesiones restantes</span><span data-lang-en>Sessions left</span></div>
+                    <div class="text-gray-500 text-xs"><span data-lang-es>Sesiones restantes</span><span data-lang-en>Sessions left</span></div>
                   </div>
                 </div>
               </div>
@@ -1279,7 +1279,7 @@
             <!-- Insight 3: Risk & Opportunities -->
             <div class="insight-3">
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs text-slate-500 uppercase tracking-wider"><span data-lang-es>Alertas y Oportunidades</span><span data-lang-en>Alerts & Opportunities</span></span>
+                <span class="text-xs text-gray-400 uppercase tracking-wider"><span data-lang-es>Alertas y Oportunidades</span><span data-lang-en>Alerts & Opportunities</span></span>
                 <span class="text-rose-400 text-sm font-medium"><span data-lang-es>Tiempo real</span><span data-lang-en>Real-time</span></span>
               </div>
               <div class="space-y-3">
@@ -1290,7 +1290,7 @@
                     </svg>
                     <span class="text-rose-400 text-xs font-semibold"><span data-lang-es>INDICADOR DE RIESGO</span><span data-lang-en>RISK INDICATOR</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Aumento de aislamiento social mencionado en las últimas 2 sesiones</span><span data-lang-en>Increased social isolation mentioned in last 2 sessions</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Aumento de aislamiento social mencionado en las últimas 2 sesiones</span><span data-lang-en>Increased social isolation mentioned in last 2 sessions</span></p>
                 </div>
                 <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                   <div class="flex items-center space-x-2 mb-2">
@@ -1299,7 +1299,7 @@
                     </svg>
                     <span class="text-amber-400 text-xs font-semibold"><span data-lang-es>OPORTUNIDAD TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC OPPORTUNITY</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Paciente mencionó interés en yoga - considerar como intervención complementaria</span><span data-lang-en>Patient mentioned interest in yoga - consider as complementary intervention</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Paciente mencionó interés en yoga - considerar como intervención complementaria</span><span data-lang-en>Patient mentioned interest in yoga - consider as complementary intervention</span></p>
                 </div>
                 <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div class="flex items-center space-x-2 mb-2">
@@ -1308,7 +1308,7 @@
                     </svg>
                     <span class="text-emerald-400 text-xs font-semibold"><span data-lang-es>FORTALEZA IDENTIFICADA</span><span data-lang-en>STRENGTH IDENTIFIED</span></span>
                   </div>
-                  <p class="text-slate-300 text-sm"><span data-lang-es>Alta motivación y cumplimiento de tareas (95% completadas)</span><span data-lang-en>High motivation and homework compliance (95% completed)</span></p>
+                  <p class="text-gray-500 text-sm"><span data-lang-es>Alta motivación y cumplimiento de tareas (95% completadas)</span><span data-lang-en>High motivation and homework compliance (95% completed)</span></p>
                 </div>
               </div>
             </div>
@@ -1324,19 +1324,19 @@
 
         </div>
 
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-2xl blur-xl"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-500/20 to-transparent rounded-full blur-xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-emerald-200/40 to-transparent rounded-2xl blur-xl"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-200/40 to-transparent rounded-full blur-xl"></div>
       </div>
 
       <!-- Text Content -->
       <div class="order-1 lg:order-1">
-        <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-          <span class="text-emerald-400 text-sm font-medium">
+        <div class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-2 mb-6">
+          <span class="text-emerald-600 text-sm font-medium">
             <span data-lang-es>INSIGHTS INTELIGENTES</span>
             <span data-lang-en>INTELLIGENT INSIGHTS</span>
           </span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           <span data-lang-es>Ve Lo Que</span>
           <span data-lang-en>See What You</span>
           <br>
@@ -1345,42 +1345,42 @@
             <span data-lang-en>Might Miss</span>
           </span>
         </h2>
-        <p class="text-xl text-slate-400 mb-8">
+        <p class="text-xl text-gray-500 mb-8">
           <span data-lang-es>gessel.ai analiza todas tus sesiones para revelar patrones, rastrear el progreso y detectar oportunidades terapéuticas que podrían pasar desapercibidas.</span>
           <span data-lang-en>gessel.ai analyzes all your sessions to reveal patterns, track progress, and detect therapeutic opportunities that might go unnoticed.</span>
         </p>
         <div class="space-y-4">
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
               <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
               </svg>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Detección de Patrones</span><span data-lang-en>Pattern Detection</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Identifica temas recurrentes y conexiones entre sesiones automáticamente</span><span data-lang-en>Automatically identifies recurring themes and connections across sessions</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Detección de Patrones</span><span data-lang-en>Pattern Detection</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Identifica temas recurrentes y conexiones entre sesiones automáticamente</span><span data-lang-en>Automatically identifies recurring themes and connections across sessions</span></p>
             </div>
           </div>
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
               <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
               </svg>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Seguimiento de Progreso</span><span data-lang-en>Progress Tracking</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Visualiza métricas objetivas y tendencias a lo largo del tratamiento</span><span data-lang-en>Visualize objective metrics and trends throughout treatment</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Seguimiento de Progreso</span><span data-lang-en>Progress Tracking</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Visualiza métricas objetivas y tendencias a lo largo del tratamiento</span><span data-lang-en>Visualize objective metrics and trends throughout treatment</span></p>
             </div>
           </div>
           <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-rose-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
               <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
               </svg>
             </div>
             <div>
-              <h4 class="text-white font-semibold"><span data-lang-es>Alertas de Riesgo</span><span data-lang-en>Risk Alerts</span></h4>
-              <p class="text-slate-400 text-sm"><span data-lang-es>Notificaciones tempranas sobre indicadores que requieren atención</span><span data-lang-en>Early notifications about indicators requiring attention</span></p>
+              <h4 class="text-gray-800 font-semibold"><span data-lang-es>Alertas de Riesgo</span><span data-lang-en>Risk Alerts</span></h4>
+              <p class="text-gray-500 text-sm"><span data-lang-es>Notificaciones tempranas sobre indicadores que requieren atención</span><span data-lang-en>Early notifications about indicators requiring attention</span></p>
             </div>
           </div>
         </div>
@@ -1390,16 +1390,16 @@
 </section>
 
 <!-- How It Works Section -->
-<section id="how-it-works" class="bg-slate-900 py-24">
+<section id="how-it-works" class="bg-gray-50 py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-4 py-2 mb-6">
-        <span class="text-teal-400 text-sm font-medium">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
           <span data-lang-es>ASÍ DE SIMPLE</span>
           <span data-lang-en>SIMPLE AS 1-2-3</span>
         </span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
         <span data-lang-es>De la Sesión a la Nota en</span>
         <span data-lang-en>From Session to Note in</span>
         <br>
@@ -1419,11 +1419,11 @@
         <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/25">
           <span class="text-2xl font-bold text-white">1</span>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Captura</span>
           <span data-lang-en>Capture</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>Sube una foto de tus notas manuscritas o escribe directamente en la plataforma. gessel.ai extrae el texto usando OCR avanzado y lo procesa de forma segura. Las imágenes se eliminan inmediatamente.</span>
           <span data-lang-en>Upload a photo of your handwritten notes or type directly into the platform. gessel.ai extracts text using advanced OCR and processes it securely. Images are deleted immediately.</span>
         </p>
@@ -1434,11 +1434,11 @@
         <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/25">
           <span class="text-2xl font-bold text-white">2</span>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Genera</span>
           <span data-lang-en>Generate</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>Segundos después de terminar tu sesión, recibe una nota clínica completa en tu formato preferido (SOAP, DAP, BIRP, GIRP o personalizado). Edita según necesites con un clic.</span>
           <span data-lang-en>Within seconds of ending your session, receive a complete clinical note in your preferred format (SOAP, DAP, BIRP, GIRP, or custom). Edit as needed with one click.</span>
         </p>
@@ -1449,11 +1449,11 @@
         <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/25">
           <span class="text-2xl font-bold text-white">3</span>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
           <span data-lang-es>Aprende</span>
           <span data-lang-en>Learn</span>
         </h3>
-        <p class="text-slate-400">
+        <p class="text-gray-500">
           <span data-lang-es>Con el tiempo, gessel.ai revela patrones entre tus sesiones, te ayuda a rastrear el progreso de tus pacientes y proporciona insights para apoyar tu desarrollo como clínico.</span>
           <span data-lang-en>Over time, gessel.ai surfaces patterns across your sessions, helps you track client progress, and provides insights to support your development as a clinician.</span>
         </p>
@@ -1465,20 +1465,20 @@
 
 
 <!-- Pricing Section -->
-<section id="pricing" class="bg-slate-950 py-24">
+<section id="pricing" class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-4 py-2 mb-6">
-        <span class="text-teal-400 text-sm font-medium">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
           <span data-lang-es>PRECIOS</span>
           <span data-lang-en>PRICING</span>
         </span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
         <span data-lang-es>Precios Simples y Transparentes</span>
         <span data-lang-en>Simple, Transparent Pricing</span>
       </h2>
-      <p class="text-xl text-slate-400">
+      <p class="text-xl text-gray-500">
         <span data-lang-es>Comienza gratis. Actualiza cuando estés listo. Sin cargos ocultos.</span>
         <span data-lang-en>Start free. Upgrade when you are ready. No hidden fees.</span>
       </p>
@@ -1486,84 +1486,84 @@
 
     <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
       <!-- Plan 1: Starter -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-colors">
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:border-teal-300 shadow-sm transition-colors">
         <div class="mb-6">
-          <h3 class="text-xl font-bold text-white mb-2">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">
             <span data-lang-es>Inicial</span>
             <span data-lang-en>Starter</span>
           </h3>
-          <p class="text-slate-400 text-sm">
+          <p class="text-gray-500 text-sm">
             <span data-lang-es>Perfecto para terapeutas nuevos</span>
             <span data-lang-en>Perfect for new therapists</span>
           </p>
         </div>
         <div class="mb-6">
-          <span class="text-4xl font-bold text-white">$39</span>
-          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
-          <div class="text-slate-500 text-sm mt-1"><span data-lang-es>~$680 MXN/mes</span><span data-lang-en>~$680 MXN/mo</span></div>
+          <span class="text-4xl font-bold text-gray-900">$39</span>
+          <span class="text-gray-500"> USD/</span><span class="text-gray-500" data-lang-es>mes</span><span class="text-gray-500" data-lang-en>month</span>
+          <div class="text-gray-400 text-sm mt-1"><span data-lang-es>~$680 MXN/mes</span><span data-lang-en>~$680 MXN/mo</span></div>
         </div>
         <ul class="space-y-3 mb-8">
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Hasta 50 sesiones/mes</span>
             <span data-lang-en>Up to 50 sessions/month</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Todos los formatos clínicos</span>
             <span data-lang-en>All clinical formats</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Exportación EHR</span>
             <span data-lang-en>EHR export</span>
           </li>
         </ul>
-        <button data-open-modal class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+        <button data-open-modal class="w-full py-3 border border-gray-300 hover:border-teal-400 rounded-xl text-gray-700 font-semibold transition-colors">
           <span data-lang-es>Comenzar Prueba Gratuita</span>
           <span data-lang-en>Start Free Trial</span>
         </button>
       </div>
 
       <!-- Plan 2: Professional (Most Popular) -->
-      <div class="relative bg-gradient-to-br from-teal-500/20 to-emerald-500/10 border-2 border-teal-500/50 rounded-2xl p-8 scale-105 shadow-xl shadow-teal-500/10">
+      <div class="relative bg-gradient-to-br from-teal-500/20 to-emerald-500/10 border-2 border-teal-400 rounded-2xl p-8 scale-105 shadow-xl shadow-teal-500/10">
         <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-teal-500 to-emerald-500 px-4 py-1 rounded-full text-sm font-semibold text-white">
           <span data-lang-es>Más Popular</span>
           <span data-lang-en>Most Popular</span>
         </div>
         <div class="mb-6">
-          <h3 class="text-xl font-bold text-white mb-2">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">
             <span data-lang-es>Profesional</span>
             <span data-lang-en>Professional</span>
           </h3>
-          <p class="text-slate-400 text-sm">
+          <p class="text-gray-500 text-sm">
             <span data-lang-es>Para consulta privada de tiempo completo</span>
             <span data-lang-en>For full-time private practice</span>
           </p>
         </div>
         <div class="mb-6">
-          <span class="text-4xl font-bold text-white">$79</span>
-          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
-          <div class="text-slate-500 text-sm mt-1"><span data-lang-es>~$1,375 MXN/mes</span><span data-lang-en>~$1,375 MXN/mo</span></div>
+          <span class="text-4xl font-bold text-gray-900">$79</span>
+          <span class="text-gray-500"> USD/</span><span class="text-gray-500" data-lang-es>mes</span><span class="text-gray-500" data-lang-en>month</span>
+          <div class="text-gray-400 text-sm mt-1"><span data-lang-es>~$1,375 MXN/mes</span><span data-lang-en>~$1,375 MXN/mo</span></div>
         </div>
         <ul class="space-y-3 mb-8">
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Sesiones ilimitadas</span>
             <span data-lang-en>Unlimited sessions</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Reconocimiento de patrones</span>
             <span data-lang-en>Pattern recognition</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Planes de tratamiento</span>
             <span data-lang-en>Treatment planning</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Soporte prioritario</span>
             <span data-lang-en>Priority support</span>
           </li>
@@ -1575,40 +1575,40 @@
       </div>
 
       <!-- Plan 3: Supervisor -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-colors">
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:border-teal-300 shadow-sm transition-colors">
         <div class="mb-6">
-          <h3 class="text-xl font-bold text-white mb-2">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">
             <span data-lang-es>Supervisor</span>
             <span data-lang-en>Supervisor</span>
           </h3>
-          <p class="text-slate-400 text-sm">
+          <p class="text-gray-500 text-sm">
             <span data-lang-es>Para supervisores y grupos</span>
             <span data-lang-en>For supervisors and groups</span>
           </p>
         </div>
         <div class="mb-6">
-          <span class="text-4xl font-bold text-white">$129</span>
-          <span class="text-slate-400"> USD/</span><span class="text-slate-400" data-lang-es>mes</span><span class="text-slate-400" data-lang-en>month</span>
-          <div class="text-slate-500 text-sm mt-1"><span data-lang-es>~$2,250 MXN/mes</span><span data-lang-en>~$2,250 MXN/mo</span></div>
+          <span class="text-4xl font-bold text-gray-900">$129</span>
+          <span class="text-gray-500"> USD/</span><span class="text-gray-500" data-lang-es>mes</span><span class="text-gray-500" data-lang-en>month</span>
+          <div class="text-gray-400 text-sm mt-1"><span data-lang-es>~$2,250 MXN/mes</span><span data-lang-en>~$2,250 MXN/mo</span></div>
         </div>
         <ul class="space-y-3 mb-8">
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Todo en Profesional</span>
             <span data-lang-en>Everything in Professional</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Modo supervisión</span>
             <span data-lang-en>Supervision mode</span>
           </li>
-          <li class="flex items-start space-x-3 text-slate-300 text-sm">
-            <svg class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <li class="flex items-start space-x-3 text-gray-500 text-sm">
+            <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             <span data-lang-es>Seguimiento de competencias</span>
             <span data-lang-en>Competency tracking</span>
           </li>
         </ul>
-        <button data-open-modal class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+        <button data-open-modal class="w-full py-3 border border-gray-300 hover:border-teal-400 rounded-xl text-gray-700 font-semibold transition-colors">
           <span data-lang-es>Contactar Ventas</span>
           <span data-lang-en>Contact Sales</span>
         </button>
@@ -1618,16 +1618,16 @@
 </section>
 
 <!-- Security Section -->
-<section id="security" class="bg-slate-900 py-24">
+<section id="security" class="bg-gray-50 py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-4 py-2 mb-6">
-        <span class="text-teal-400 text-sm font-medium">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
           <span data-lang-es>SEGURIDAD</span>
           <span data-lang-en>SECURITY</span>
         </span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
         <span data-lang-es>Los Datos de Tus Pacientes</span>
         <span data-lang-en>Your Clients' Data</span>
         <br>
@@ -1636,7 +1636,7 @@
           <span data-lang-en>Stays With Your Clients</span>
         </span>
       </h2>
-      <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+      <p class="text-xl text-gray-500 max-w-2xl mx-auto">
         <span data-lang-es>Construimos gessel.ai con la privacidad como fundamento. Tu confianza y la confidencialidad de tus pacientes no son negociables.</span>
         <span data-lang-en>We built gessel.ai with privacy as the foundation. Your trust and your clients' confidentiality are non-negotiable.</span>
       </p>
@@ -1644,69 +1644,69 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Zero Image Retention -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
-        <div class="w-14 h-14 bg-teal-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+        <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
           </svg>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">
           <span data-lang-es>Cero Retención de Imágenes</span>
           <span data-lang-en>Zero Image Retention</span>
         </h3>
-        <p class="text-slate-400 text-sm">
+        <p class="text-gray-500 text-sm">
           <span data-lang-es>Las fotos de tus notas se procesan con OCR y se eliminan inmediatamente. Nunca almacenamos imágenes.</span>
           <span data-lang-en>Photos of your notes are processed with OCR and immediately deleted. We never store images.</span>
         </p>
       </div>
 
       <!-- HIPAA Compliant -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
-        <div class="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">
           <span data-lang-es>Cumple con HIPAA</span>
           <span data-lang-en>HIPAA Compliant</span>
         </h3>
-        <p class="text-slate-400 text-sm">
+        <p class="text-gray-500 text-sm">
           <span data-lang-es>Salvaguardas técnicas y administrativas completas. BAA disponible. Alojado en infraestructura certificada SOC 2 Tipo II.</span>
           <span data-lang-en>Full technical and administrative safeguards. BAA available. Hosted on SOC 2 Type II certified infrastructure.</span>
         </p>
       </div>
 
       <!-- Encryption -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
-        <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+        <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">
           <span data-lang-es>Encriptación Total</span>
           <span data-lang-en>Full Encryption</span>
         </h3>
-        <p class="text-slate-400 text-sm">
+        <p class="text-gray-500 text-sm">
           <span data-lang-es>Encriptación AES de 256 bits en reposo. Encriptación TLS 1.3 en tránsito. Datos protegidos en todo momento.</span>
           <span data-lang-en>256-bit AES encryption at rest. TLS 1.3 encryption in transit. Data protected at all times.</span>
         </p>
       </div>
 
       <!-- Data Control -->
-      <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-center">
-        <div class="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm">
+        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
           <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
         </div>
-        <h3 class="text-lg font-bold text-white mb-2">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">
           <span data-lang-es>Tú Controlas Todo</span>
           <span data-lang-en>You Control Everything</span>
         </h3>
-        <p class="text-slate-400 text-sm">
+        <p class="text-gray-500 text-sm">
           <span data-lang-es>Exporta tus datos en cualquier momento. Elimina tu cuenta y todos los datos con un clic.</span>
           <span data-lang-en>Export your data anytime. Delete your account and all data with one click.</span>
         </p>
@@ -1719,7 +1719,7 @@
 <!-- Final CTA Section -->
 <section class="bg-gradient-to-br from-teal-600 via-emerald-600 to-teal-700 py-20">
   <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
       <span data-lang-es>¿Listo para Transformar Tu Práctica Clínica?</span>
       <span data-lang-en>Ready to Transform Your Clinical Practice?</span>
     </h2>
@@ -1770,7 +1770,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-slate-950 pt-16 pb-8">
+<footer class="bg-gray-900 pt-16 pb-8">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-4 gap-12 mb-12">
       <div class="md:col-span-1">
@@ -1780,18 +1780,18 @@
           </div>
           <span class="text-2xl font-bold text-white">gessel<span class="text-teal-400">.ai</span></span>
         </div>
-        <p class="text-slate-400 mb-4">
+        <p class="text-gray-400 mb-4">
           <span data-lang-es>El observador inteligente para el desarrollo de terapeutas.</span>
           <span data-lang-en>The intelligent observer for therapist development.</span>
         </p>
         <div class="flex space-x-4">
-          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
           </a>
-          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
-          <a href="#" class="text-slate-400 hover:text-white transition-colors">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
@@ -1803,9 +1803,9 @@
           <span data-lang-en>Product</span>
         </h4>
         <ul class="space-y-3">
-          <li><a href="#formats" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Formatos Clínicos</span><span data-lang-en>Clinical Formats</span></a></li>
-          <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Precios</span><span data-lang-en>Pricing</span></a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Integraciones</span><span data-lang-en>Integrations</span></a></li>
+          <li><a href="#formats" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Formatos Clínicos</span><span data-lang-en>Clinical Formats</span></a></li>
+          <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Precios</span><span data-lang-en>Pricing</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Integraciones</span><span data-lang-en>Integrations</span></a></li>
         </ul>
       </div>
 
@@ -1815,10 +1815,10 @@
           <span data-lang-en>Resources</span>
         </h4>
         <ul class="space-y-3">
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Blog</a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Centro de Ayuda</span><span data-lang-en>Help Center</span></a></li>
-          <li><a href="#security" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Cumplimiento HIPAA</span><span data-lang-en>HIPAA Compliance</span></a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Documentación API</span><span data-lang-en>API Docs</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Centro de Ayuda</span><span data-lang-en>Help Center</span></a></li>
+          <li><a href="#security" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Cumplimiento HIPAA</span><span data-lang-en>HIPAA Compliance</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Documentación API</span><span data-lang-en>API Docs</span></a></li>
         </ul>
       </div>
 
@@ -1828,26 +1828,26 @@
           <span data-lang-en>Company</span>
         </h4>
         <ul class="space-y-3">
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Acerca de</span><span data-lang-en>About</span></a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Empleos</span><span data-lang-en>Careers</span></a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Política de Privacidad</span><span data-lang-en>Privacy Policy</span></a></li>
-          <li><a href="#" class="text-slate-400 hover:text-white transition-colors"><span data-lang-es>Términos de Servicio</span><span data-lang-en>Terms of Service</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Acerca de</span><span data-lang-en>About</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Empleos</span><span data-lang-en>Careers</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Política de Privacidad</span><span data-lang-en>Privacy Policy</span></a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors"><span data-lang-es>Términos de Servicio</span><span data-lang-en>Terms of Service</span></a></li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-slate-500 text-sm">© 2026 gessel.ai. <span data-lang-es>Todos los derechos reservados.</span><span data-lang-en>All rights reserved.</span></p>
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">© 2026 gessel.ai. <span data-lang-es>Todos los derechos reservados.</span><span data-lang-en>All rights reserved.</span></p>
       <div class="flex items-center space-x-6 mt-4 md:mt-0">
-        <span class="text-slate-500 text-sm flex items-center space-x-2">
+        <span class="text-gray-400 text-sm flex items-center space-x-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>HIPAA</span>
         </span>
-        <span class="text-slate-500 text-sm flex items-center space-x-2">
+        <span class="text-gray-400 text-sm flex items-center space-x-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>SOC 2 Infra</span>
         </span>
-        <span class="text-slate-500 text-sm flex items-center space-x-2">
+        <span class="text-gray-400 text-sm flex items-center space-x-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>APA Aligned</span>
         </span>
@@ -1859,7 +1859,7 @@
 <!-- Lead Capture Modal -->
 <div id="lead-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-content">
-    <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-600 hover:text-teal-600 transition-colors">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
 
@@ -1873,7 +1873,7 @@
           <span data-lang-es>¡Próximamente!</span>
           <span data-lang-en>Coming Soon!</span>
         </h3>
-        <p class="text-slate-400 text-sm">
+        <p class="text-gray-500 text-sm">
           <span data-lang-es>Estamos preparando algo increíble. Regístrate para acceso anticipado y obtén <span class="text-teal-400 font-semibold">5 días extra gratis</span> en tu prueba.</span>
           <span data-lang-en>We're building something amazing. Sign up for early access and get <span class="text-teal-400 font-semibold">5 extra free days</span> on your trial.</span>
         </p>
@@ -1889,7 +1889,7 @@
           <input type="email" name="email" required
             data-placeholder-es="tu@correo.com" data-placeholder-en="you@email.com"
             placeholder="tu@correo.com">
-          <select id="role-select" name="role" class="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-slate-200 text-sm outline-none focus:border-teal-500 transition-colors">
+          <select id="role-select" name="role" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-slate-800 text-slate-200 text-sm outline-none focus:border-teal-500 transition-colors">
           </select>
           <button type="submit" class="w-full py-3 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 rounded-xl text-white font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-500/25">
             <span data-lang-es>Reservar Mi Lugar</span>
@@ -1898,7 +1898,7 @@
         </div>
       </form>
 
-      <p class="text-center text-slate-500 text-xs mt-4">
+      <p class="text-center text-gray-400 text-xs mt-4">
         <span data-lang-es>Sin spam. Solo te avisaremos cuando estemos listos.</span>
         <span data-lang-en>No spam. We'll only notify you when we're ready.</span>
       </p>
@@ -1913,7 +1913,7 @@
         <span data-lang-es>¡Estás en la lista!</span>
         <span data-lang-en>You're on the list!</span>
       </h3>
-      <p class="text-slate-400 mb-2">
+      <p class="text-gray-500 mb-2">
         <span data-lang-es>Gracias por tu interés en gessel.ai. Te notificaremos cuando estemos listos.</span>
         <span data-lang-en>Thanks for your interest in gessel.ai. We'll notify you when we're ready.</span>
       </p>
@@ -1921,7 +1921,7 @@
         <span data-lang-es>🎉 ¡Tus 5 días extra están reservados!</span>
         <span data-lang-en>🎉 Your 5 extra days are reserved!</span>
       </p>
-      <button onclick="closeModal()" class="px-6 py-2.5 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+      <button onclick="closeModal()" class="px-6 py-2.5 border border-gray-300 hover:border-teal-400 rounded-xl text-white font-semibold transition-colors">
         <span data-lang-es>Cerrar</span>
         <span data-lang-en>Close</span>
       </button>
@@ -1969,10 +1969,10 @@
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 20) {
-      navbar.classList.add('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg');
+      navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
       navbar.classList.remove('bg-transparent');
     } else {
-      navbar.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg');
+      navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
       navbar.classList.add('bg-transparent');
     }
   });
