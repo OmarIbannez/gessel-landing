@@ -115,6 +115,111 @@
       height: 18px;
     }
 
+    /* Lead capture modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid #334155;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      max-width: 28rem;
+      width: 90%;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #475569;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .modal-content input:focus {
+      border-color: #818cf8;
+    }
+    .modal-content input::placeholder {
+      color: #64748b;
+    }
+
+    /* Hero Narrative Animation */
+    .hero-narrative {
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+      min-height: 340px;
+    }
+    .hero-narrative > .hero-scene {
+      grid-row: 1;
+      grid-column: 1;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0.5s;
+    }
+    .hero-narrative > .hero-scene.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s, visibility 0s 0s;
+    }
+    .hero-narrative > .hero-scene.leaving {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s 0.4s;
+    }
+    .hero-scene .scene-child {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .hero-scene.active .scene-child {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-scene.active .scene-child:nth-child(1) { transition-delay: 0.15s; }
+    .hero-scene.active .scene-child:nth-child(2) { transition-delay: 0.30s; }
+    .hero-scene.active .scene-child:nth-child(3) { transition-delay: 0.45s; }
+    .hero-scene.active .scene-child:nth-child(4) { transition-delay: 0.60s; }
+    .hero-scene:not(.active) .scene-child { transition-delay: 0s; }
+
+    .hero-progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #334155;
+      transition: background 0.3s, transform 0.3s, width 0.3s;
+    }
+    .hero-progress-dot.active {
+      background: #818cf8;
+      width: 20px;
+      border-radius: 3px;
+    }
+
     .gradient-text {
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
       -webkit-background-clip: text;
@@ -191,7 +296,7 @@
           <span data-lang-es>Iniciar Sesión</span>
           <span data-lang-en>Log In</span>
         </button>
-        <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25">
+        <button data-open-modal class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25">
           <span data-lang-es>Comienza Tu Prueba Gratuita</span>
           <span data-lang-en>Start Your Free Trial</span>
         </button>
@@ -222,7 +327,7 @@
           <button onclick="setLanguage('es')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇲🇽 ES</button>
           <button onclick="setLanguage('en')" class="px-3 py-2 bg-slate-800 rounded-lg text-sm">🇺🇸 EN</button>
         </div>
-        <button class="bg-indigo-500 text-white px-6 py-2.5 rounded-full font-semibold w-full">
+        <button data-open-modal class="bg-indigo-500 text-white px-6 py-2.5 rounded-full font-semibold w-full">
           <span data-lang-es>Comienza Tu Prueba Gratuita</span><span data-lang-en>Start Your Free Trial</span>
         </button>
       </div>
@@ -269,14 +374,14 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
-          <button class="group bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/25 flex items-center justify-center space-x-2">
+          <button data-open-modal class="group bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/25 flex items-center justify-center space-x-2">
             <span data-lang-es>Comienza Tu Prueba Gratuita</span>
             <span data-lang-en>Start Your Free Trial</span>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </button>
-          <button class="group flex items-center justify-center space-x-3 text-white border border-slate-600 hover:border-slate-500 px-8 py-4 rounded-full font-semibold transition-all hover:bg-slate-800/50">
+          <button data-open-modal class="group flex items-center justify-center space-x-3 text-white border border-slate-600 hover:border-slate-500 px-8 py-4 rounded-full font-semibold transition-all hover:bg-slate-800/50">
             <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <polygon points="5 3 19 12 5 21 5 3"/>
@@ -1650,7 +1755,7 @@
             <span data-lang-en>EHR export</span>
           </li>
         </ul>
-        <button class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+        <button data-open-modal class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
           <span data-lang-es>Comenzar Prueba Gratuita</span>
           <span data-lang-en>Start Free Trial</span>
         </button>
@@ -1699,7 +1804,7 @@
             <span data-lang-en>Priority support</span>
           </li>
         </ul>
-        <button class="w-full py-3 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 rounded-xl text-white font-semibold transition-colors">
+        <button data-open-modal class="w-full py-3 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 rounded-xl text-white font-semibold transition-colors">
           <span data-lang-es>Comenzar Prueba Gratuita</span>
           <span data-lang-en>Start Free Trial</span>
         </button>
@@ -1739,7 +1844,7 @@
             <span data-lang-en>Competency tracking</span>
           </li>
         </ul>
-        <button class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+        <button data-open-modal class="w-full py-3 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
           <span data-lang-es>Contactar Ventas</span>
           <span data-lang-en>Contact Sales</span>
         </button>
@@ -1876,14 +1981,14 @@
       <span data-lang-en>Specialized AI models that document, plan, and discover patterns — designed by certified clinical psychologists.</span>
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <button class="group bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2">
+      <button data-open-modal class="group bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2">
         <span data-lang-es>Comienza Tu Prueba Gratuita de 14 Días</span>
         <span data-lang-en>Start Your 14-Day Free Trial</span>
         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </button>
-      <button class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/10">
+      <button data-open-modal class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all hover:bg-white/10">
         <span data-lang-es>Ver Demostración</span>
         <span data-lang-en>Watch Demo</span>
       </button>
@@ -1996,6 +2101,79 @@
     </div>
   </div>
 </footer>
+
+<!-- Lead Capture Modal -->
+<div id="lead-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+    <!-- Form state -->
+    <div id="modal-form-state">
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-2">
+          <span data-lang-es>¡Próximamente!</span>
+          <span data-lang-en>Coming Soon!</span>
+        </h3>
+        <p class="text-slate-400 text-sm">
+          <span data-lang-es>Estamos preparando algo increíble. Regístrate para acceso anticipado y obtén <span class="text-indigo-400 font-semibold">5 días extra gratis</span> en tu prueba.</span>
+          <span data-lang-en>We're building something amazing. Sign up for early access and get <span class="text-indigo-400 font-semibold">5 extra free days</span> on your trial.</span>
+        </p>
+      </div>
+
+      <form id="lead-form" name="early-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="early-access">
+        <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="space-y-3">
+          <input type="text" name="name" required
+            data-placeholder-es="Tu nombre" data-placeholder-en="Your name"
+            placeholder="Tu nombre">
+          <input type="email" name="email" required
+            data-placeholder-es="tu@correo.com" data-placeholder-en="you@email.com"
+            placeholder="tu@correo.com">
+          <select id="role-select" name="role" class="w-full px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-slate-200 text-sm outline-none focus:border-indigo-500 transition-colors">
+          </select>
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 rounded-xl text-white font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/25">
+            <span data-lang-es>Reservar Mi Lugar</span>
+            <span data-lang-en>Reserve My Spot</span>
+          </button>
+        </div>
+      </form>
+
+      <p class="text-center text-slate-500 text-xs mt-4">
+        <span data-lang-es>Sin spam. Solo te avisaremos cuando estemos listos.</span>
+        <span data-lang-en>No spam. We'll only notify you when we're ready.</span>
+      </p>
+    </div>
+
+    <!-- Success state -->
+    <div id="modal-success-state" class="hidden text-center">
+      <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h3 class="text-2xl font-bold text-white mb-2">
+        <span data-lang-es>¡Estás en la lista!</span>
+        <span data-lang-en>You're on the list!</span>
+      </h3>
+      <p class="text-slate-400 mb-2">
+        <span data-lang-es>Gracias por tu interés en gessel.ai. Te notificaremos cuando estemos listos.</span>
+        <span data-lang-en>Thanks for your interest in gessel.ai. We'll notify you when we're ready.</span>
+      </p>
+      <p class="text-indigo-400 font-semibold text-sm mb-6">
+        <span data-lang-es>🎉 ¡Tus 5 días extra están reservados!</span>
+        <span data-lang-en>🎉 Your 5 extra days are reserved!</span>
+      </p>
+      <button onclick="closeModal()" class="px-6 py-2.5 border border-slate-600 hover:border-slate-500 rounded-xl text-white font-semibold transition-colors">
+        <span data-lang-es>Cerrar</span>
+        <span data-lang-en>Close</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script>
   // Language management
@@ -2131,6 +2309,118 @@
       startTimer();
     });
   })();
+
+  // Lead capture modal
+  function openModal() {
+    document.getElementById('lead-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    updateModalLang();
+  }
+
+  function closeModal() {
+    document.getElementById('lead-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Update modal placeholders & select when language changes
+  var roleOptions = {
+    es: [
+      { value: '', label: 'Selecciona tu rol', disabled: true },
+      { value: 'psychologist', label: 'Psicólogo(a) Clínico(a)' },
+      { value: 'therapist', label: 'Terapeuta' },
+      { value: 'supervisor', label: 'Supervisor' },
+      { value: 'student', label: 'Estudiante' },
+      { value: 'other', label: 'Otro' }
+    ],
+    en: [
+      { value: '', label: 'Select your role', disabled: true },
+      { value: 'psychologist', label: 'Clinical Psychologist' },
+      { value: 'therapist', label: 'Therapist' },
+      { value: 'supervisor', label: 'Supervisor' },
+      { value: 'student', label: 'Student' },
+      { value: 'other', label: 'Other' }
+    ]
+  };
+
+  function updateModalLang() {
+    var lang = currentLang || 'es';
+    document.querySelectorAll('#lead-modal input[data-placeholder-' + lang + ']').forEach(function(input) {
+      input.placeholder = input.getAttribute('data-placeholder-' + lang);
+    });
+    // Rebuild select options for current language
+    var select = document.getElementById('role-select');
+    if (select) {
+      var currentVal = select.value;
+      select.innerHTML = '';
+      roleOptions[lang].forEach(function(opt) {
+        var option = document.createElement('option');
+        option.value = opt.value;
+        option.textContent = opt.label;
+        if (opt.disabled) { option.disabled = true; }
+        if (opt.value === currentVal || (opt.disabled && !currentVal)) { option.selected = true; }
+        select.appendChild(option);
+      });
+    }
+  }
+
+  // Hook into setLanguage to keep modal in sync
+  var _origSetLanguage = setLanguage;
+  setLanguage = function(lang) {
+    _origSetLanguage(lang);
+    updateModalLang();
+  };
+
+  // Handle form submission via fetch (Netlify Forms)
+  document.getElementById('lead-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = form.querySelector('button[type="submit"]');
+    var originalHTML = btn.innerHTML;
+    btn.innerHTML = '<svg class="w-5 h-5 animate-spin mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>';
+    btn.disabled = true;
+
+    var formData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(function(response) {
+      if (response.ok) {
+        document.getElementById('modal-form-state').classList.add('hidden');
+        document.getElementById('modal-success-state').classList.remove('hidden');
+      } else {
+        throw new Error('Form submission failed');
+      }
+    })
+    .catch(function() {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      alert(currentLang === 'en'
+        ? 'Something went wrong. Please try again.'
+        : 'Algo salió mal. Por favor intenta de nuevo.');
+    });
+  });
+
+  // Initialize modal language
+  updateModalLang();
+
+  // Wire all CTA buttons
+  document.querySelectorAll('[data-open-modal]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('modal-form-state').classList.remove('hidden');
+      document.getElementById('modal-success-state').classList.add('hidden');
+      document.getElementById('lead-form').reset();
+      updateModalLang();
+      openModal();
+    });
+  });
 </script>
 
 </body>
