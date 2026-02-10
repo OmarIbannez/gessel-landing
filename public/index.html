@@ -227,6 +227,13 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    /* FAQ Accordion */
+    .faq-item details summary { cursor: pointer; list-style: none; }
+    .faq-item details summary::-webkit-details-marker { display: none; }
+    .faq-item details summary::marker { display: none; }
+    .faq-item details[open] summary .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 0.2s ease; }
+
     html { scroll-behavior: smooth; }
     [data-lang-en] { display: none; }
     [data-lang-es] { display: inline; }
@@ -268,6 +275,7 @@
           <span data-lang-es>Seguridad</span>
           <span data-lang-en>Security</span>
         </a>
+        <a href="#faq" class="text-gray-600 hover:text-teal-600 transition-colors">FAQ</a>
       </div>
 
       <div class="hidden md:flex items-center space-x-4">
@@ -324,6 +332,7 @@
         <a href="#security" class="text-gray-500 hover:text-white">
           <span data-lang-es>Seguridad</span><span data-lang-en>Security</span>
         </a>
+        <a href="#faq" class="text-gray-500 hover:text-white">FAQ</a>
         <div class="flex space-x-2 pt-2">
           <button onclick="setLanguage('es')" class="px-3 py-2 bg-gray-100 rounded-lg text-sm">🇲🇽 ES</button>
           <button onclick="setLanguage('en')" class="px-3 py-2 bg-gray-100 rounded-lg text-sm">🇺🇸 EN</button>
@@ -624,9 +633,126 @@
   </div>
 </section>
 
-<!-- Value Proposition Cards -->
-<section class="bg-gray-50 py-20">
+<!-- Video/Demo Section -->
+<section id="demo" class="bg-white py-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
+          <span data-lang-es>VE CÓMO FUNCIONA</span>
+          <span data-lang-en>SEE HOW IT WORKS</span>
+        </span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <span data-lang-es>De Notas Desordenadas a</span>
+        <span data-lang-en>From Messy Notes to</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Documentación Profesional en Segundos</span>
+          <span data-lang-en>Professional Documentation in Seconds</span>
+        </span>
+      </h2>
+      <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+        <span data-lang-es>Descubre cómo gessel.ai transforma tu flujo de trabajo clínico en menos de 2 minutos.</span>
+        <span data-lang-en>Discover how gessel.ai transforms your clinical workflow in under 2 minutes.</span>
+      </p>
+    </div>
+    <!-- Video Embed Placeholder -->
+    <div class="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-gradient-to-br from-gray-50 to-gray-100 aspect-video">
+      <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-500/10 to-indigo-500/10">
+        <button data-open-modal class="group relative">
+          <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-indigo-500 rounded-full flex items-center justify-center shadow-2xl shadow-teal-500/30 transition-transform group-hover:scale-110">
+            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+          <div class="absolute -inset-4 rounded-full border-2 border-teal-400/30 animate-ping"></div>
+        </button>
+      </div>
+      <div class="absolute top-6 left-6 flex items-center space-x-2 opacity-40">
+        <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+      </div>
+      <div class="absolute bottom-6 left-6 right-6 flex items-center space-x-3 opacity-30">
+        <div class="h-1.5 bg-teal-300 rounded-full flex-1"></div>
+        <span class="text-gray-400 text-xs">2:15</span>
+      </div>
+    </div>
+    <p class="text-center text-gray-400 text-sm mt-4">
+      <span data-lang-es>Video de demostración — 2 minutos</span>
+      <span data-lang-en>Demo video — 2 minutes</span>
+    </p>
+  </div>
+</section>
+
+<!-- Social Proof Section -->
+<section class="bg-gray-50 py-16">
   <div class="max-w-7xl mx-auto px-6">
+    <p class="text-center text-gray-400 text-sm font-medium tracking-wider uppercase mb-10">
+      <span data-lang-es>Profesionales de estas instituciones ya confían en gessel.ai</span>
+      <span data-lang-en>Professionals from these institutions already trust gessel.ai</span>
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+      <div class="flex items-center space-x-2 opacity-40 hover:opacity-70 transition-opacity">
+        <div class="w-10 h-10 bg-gray-300 rounded-lg"></div>
+        <span class="text-gray-400 font-semibold text-sm">
+          <span data-lang-es>Universidad Nacional</span>
+          <span data-lang-en>National University</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-2 opacity-40 hover:opacity-70 transition-opacity">
+        <div class="w-10 h-10 bg-gray-300 rounded-lg"></div>
+        <span class="text-gray-400 font-semibold text-sm">
+          <span data-lang-es>Hospital Central</span>
+          <span data-lang-en>Central Hospital</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-2 opacity-40 hover:opacity-70 transition-opacity">
+        <div class="w-10 h-10 bg-gray-300 rounded-lg"></div>
+        <span class="text-gray-400 font-semibold text-sm">
+          <span data-lang-es>Clínica Privada</span>
+          <span data-lang-en>Private Clinic</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-2 opacity-40 hover:opacity-70 transition-opacity">
+        <div class="w-10 h-10 bg-gray-300 rounded-lg"></div>
+        <span class="text-gray-400 font-semibold text-sm">
+          <span data-lang-es>Instituto de Salud Mental</span>
+          <span data-lang-en>Mental Health Institute</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-2 opacity-40 hover:opacity-70 transition-opacity">
+        <div class="w-10 h-10 bg-gray-300 rounded-lg"></div>
+        <span class="text-gray-400 font-semibold text-sm">
+          <span data-lang-es>Centro de Bienestar</span>
+          <span data-lang-en>Wellness Center</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section id="benefits" class="bg-white py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
+          <span data-lang-es>BENEFICIOS</span>
+          <span data-lang-en>BENEFITS</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <span data-lang-es>Menos Tiempo en Papeleo,</span>
+        <span data-lang-en>Less Time on Paperwork,</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Más Tiempo para Tus Pacientes</span>
+          <span data-lang-en>More Time for Your Clients</span>
+        </span>
+      </h2>
+    </div>
     <div class="grid md:grid-cols-3 gap-8">
       <!-- Card 1: Plan -->
       <div class="group relative bg-gradient-to-br from-teal-500/20 to-teal-500/5 border border-teal-500/20 hover:border-teal-500/40 rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
@@ -676,6 +802,79 @@
         <p class="text-gray-500">
           <span data-lang-es>gessel.ai identifica temas recurrentes entre sesiones, rastrea el progreso objetivo de tus pacientes y revela oportunidades terapéuticas que el ritmo clínico puede ocultar.</span>
           <span data-lang-en>gessel.ai identifies recurring themes across sessions, tracks your clients' objective progress, and reveals therapeutic opportunities the clinical pace can hide.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-teal-600 text-sm font-medium">
+          <span data-lang-es>ASÍ DE SIMPLE</span>
+          <span data-lang-en>SIMPLE AS 1-2-3</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <span data-lang-es>De la Sesión a la Nota en</span>
+        <span data-lang-en>From Session to Note in</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Tres Simples Pasos</span>
+          <span data-lang-en>Three Simple Steps</span>
+        </span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 relative">
+      <!-- Connecting Line -->
+      <div class="hidden md:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500"></div>
+
+      <!-- Step 1: Capture -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/25">
+          <span class="text-2xl font-bold text-white">1</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          <span data-lang-es>Captura</span>
+          <span data-lang-en>Capture</span>
+        </h3>
+        <p class="text-gray-500">
+          <span data-lang-es>Sube una foto de tus notas manuscritas o escribe directamente en la plataforma. gessel.ai extrae el texto usando OCR avanzado y lo procesa de forma segura. Las imágenes se eliminan inmediatamente.</span>
+          <span data-lang-en>Upload a photo of your handwritten notes or type directly into the platform. gessel.ai extracts text using advanced OCR and processes it securely. Images are deleted immediately.</span>
+        </p>
+      </div>
+
+      <!-- Step 2: Generate -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-indigo-500/25">
+          <span class="text-2xl font-bold text-white">2</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          <span data-lang-es>Genera</span>
+          <span data-lang-en>Generate</span>
+        </h3>
+        <p class="text-gray-500">
+          <span data-lang-es>Segundos después de terminar tu sesión, recibe una nota clínica completa en tu formato preferido (SOAP, DAP, BIRP, GIRP o personalizado). Edita según necesites con un clic.</span>
+          <span data-lang-en>Within seconds of ending your session, receive a complete clinical note in your preferred format (SOAP, DAP, BIRP, GIRP, or custom). Edit as needed with one click.</span>
+        </p>
+      </div>
+
+      <!-- Step 3: Learn -->
+      <div class="relative text-center">
+        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/25">
+          <span class="text-2xl font-bold text-white">3</span>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          <span data-lang-es>Aprende</span>
+          <span data-lang-en>Learn</span>
+        </h3>
+        <p class="text-gray-500">
+          <span data-lang-es>Con el tiempo, gessel.ai revela patrones entre tus sesiones, te ayuda a rastrear el progreso de tus pacientes y proporciona insights para apoyar tu desarrollo como clínico.</span>
+          <span data-lang-en>Over time, gessel.ai surfaces patterns across your sessions, helps you track client progress, and provides insights to support your development as a clinician.</span>
         </p>
       </div>
     </div>
@@ -1390,83 +1589,8 @@
   </div>
 </section>
 
-<!-- How It Works Section -->
-<section id="how-it-works" class="bg-gray-50 py-24">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
-        <span class="text-teal-600 text-sm font-medium">
-          <span data-lang-es>ASÍ DE SIMPLE</span>
-          <span data-lang-en>SIMPLE AS 1-2-3</span>
-        </span>
-      </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        <span data-lang-es>De la Sesión a la Nota en</span>
-        <span data-lang-en>From Session to Note in</span>
-        <br>
-        <span class="gradient-text">
-          <span data-lang-es>Tres Simples Pasos</span>
-          <span data-lang-en>Three Simple Steps</span>
-        </span>
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8 relative">
-      <!-- Connecting Line -->
-      <div class="hidden md:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-teal-500 via-indigo-500 to-purple-500"></div>
-
-      <!-- Step 1: Capture -->
-      <div class="relative text-center">
-        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/25">
-          <span class="text-2xl font-bold text-white">1</span>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          <span data-lang-es>Captura</span>
-          <span data-lang-en>Capture</span>
-        </h3>
-        <p class="text-gray-500">
-          <span data-lang-es>Sube una foto de tus notas manuscritas o escribe directamente en la plataforma. gessel.ai extrae el texto usando OCR avanzado y lo procesa de forma segura. Las imágenes se eliminan inmediatamente.</span>
-          <span data-lang-en>Upload a photo of your handwritten notes or type directly into the platform. gessel.ai extracts text using advanced OCR and processes it securely. Images are deleted immediately.</span>
-        </p>
-      </div>
-
-      <!-- Step 2: Generate -->
-      <div class="relative text-center">
-        <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-indigo-500/25">
-          <span class="text-2xl font-bold text-white">2</span>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          <span data-lang-es>Genera</span>
-          <span data-lang-en>Generate</span>
-        </h3>
-        <p class="text-gray-500">
-          <span data-lang-es>Segundos después de terminar tu sesión, recibe una nota clínica completa en tu formato preferido (SOAP, DAP, BIRP, GIRP o personalizado). Edita según necesites con un clic.</span>
-          <span data-lang-en>Within seconds of ending your session, receive a complete clinical note in your preferred format (SOAP, DAP, BIRP, GIRP, or custom). Edit as needed with one click.</span>
-        </p>
-      </div>
-
-      <!-- Step 3: Learn -->
-      <div class="relative text-center">
-        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/25">
-          <span class="text-2xl font-bold text-white">3</span>
-        </div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          <span data-lang-es>Aprende</span>
-          <span data-lang-en>Learn</span>
-        </h3>
-        <p class="text-gray-500">
-          <span data-lang-es>Con el tiempo, gessel.ai revela patrones entre tus sesiones, te ayuda a rastrear el progreso de tus pacientes y proporciona insights para apoyar tu desarrollo como clínico.</span>
-          <span data-lang-en>Over time, gessel.ai surfaces patterns across your sessions, helps you track client progress, and provides insights to support your development as a clinician.</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
 <!-- Pricing Section -->
-<section id="pricing" class="bg-white py-24">
+<section id="pricing" class="bg-gray-50 py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
@@ -1619,7 +1743,7 @@
 </section>
 
 <!-- Security Section -->
-<section id="security" class="bg-gray-50 py-24">
+<section id="security" class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
@@ -1716,6 +1840,278 @@
   </div>
 </section>
 
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-indigo-600 text-sm font-medium">
+          <span data-lang-es>TESTIMONIOS</span>
+          <span data-lang-en>TESTIMONIALS</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <span data-lang-es>Lo Que Dicen</span>
+        <span data-lang-en>What Clinicians</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>los Clínicos</span>
+          <span data-lang-en>Are Saying</span>
+        </span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="flex items-center space-x-1 mb-4">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          <span data-lang-es>"Antes pasaba 45 minutos por nota. Ahora, con gessel.ai, termino en menos de 5 minutos y la calidad es superior. Me devolvió tiempo para atender más pacientes y vivir mejor."</span>
+          <span data-lang-en>"I used to spend 45 minutes per note. Now, with gessel.ai, I finish in under 5 minutes and the quality is better. It gave me back time to see more clients and live better."</span>
+        </p>
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white font-bold text-lg">DL</span>
+          </div>
+          <div class="min-w-0">
+            <p class="text-gray-900 font-semibold text-sm">Dra. Laura Mendoza</p>
+            <p class="text-gray-400 text-xs">
+              <span data-lang-es>Psicóloga Clínica, CDMX</span>
+              <span data-lang-en>Clinical Psychologist, Mexico City</span>
+            </p>
+          </div>
+          <div class="ml-auto flex-shrink-0">
+            <div class="bg-teal-50 border border-teal-200 rounded-lg px-2 py-1">
+              <span class="text-teal-600 text-xs font-bold flex items-center">
+                <svg class="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span data-lang-es>Verificada</span>
+                <span data-lang-en>Verified</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="flex items-center space-x-1 mb-4">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          <span data-lang-es>"Lo que más me impresiona son los insights entre sesiones. Detectó una correlación entre los episodios de mi paciente y eventos que yo no había conectado. Es como tener un colega observador."</span>
+          <span data-lang-en>"What impresses me most are the cross-session insights. It detected a correlation between my client's episodes and events I hadn't connected. It's like having an observant colleague."</span>
+        </p>
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white font-bold text-lg">CR</span>
+          </div>
+          <div class="min-w-0">
+            <p class="text-gray-900 font-semibold text-sm">Dr. Carlos Reyes</p>
+            <p class="text-gray-400 text-xs">
+              <span data-lang-es>Terapeuta Cognitivo-Conductual, Guadalajara</span>
+              <span data-lang-en>CBT Therapist, Guadalajara</span>
+            </p>
+          </div>
+          <div class="ml-auto flex-shrink-0">
+            <div class="bg-teal-50 border border-teal-200 rounded-lg px-2 py-1">
+              <span class="text-teal-600 text-xs font-bold flex items-center">
+                <svg class="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span data-lang-es>Verificado</span>
+                <span data-lang-en>Verified</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="flex items-center space-x-1 mb-4">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          <span data-lang-es>"Como supervisora, poder revisar los planes de tratamiento generados por IA me ayuda a dar retroalimentación más precisa a mis supervisados. Ha elevado la calidad de nuestra clínica escuela."</span>
+          <span data-lang-en>"As a supervisor, being able to review AI-generated treatment plans helps me give more precise feedback to my supervisees. It has elevated the quality of our training clinic."</span>
+        </p>
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white font-bold text-lg">AV</span>
+          </div>
+          <div class="min-w-0">
+            <p class="text-gray-900 font-semibold text-sm">Dra. Ana Villanueva</p>
+            <p class="text-gray-400 text-xs">
+              <span data-lang-es>Supervisora Clínica, Universidad Iberoamericana</span>
+              <span data-lang-en>Clinical Supervisor, Universidad Iberoamericana</span>
+            </p>
+          </div>
+          <div class="ml-auto flex-shrink-0">
+            <div class="bg-teal-50 border border-teal-200 rounded-lg px-2 py-1">
+              <span class="text-teal-600 text-xs font-bold flex items-center">
+                <svg class="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span data-lang-es>Verificada</span>
+                <span data-lang-en>Verified</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="bg-white py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center space-x-2 bg-purple-50 border border-purple-200 rounded-full px-4 py-2 mb-6">
+        <span class="text-purple-600 text-sm font-medium">
+          <span data-lang-es>PREGUNTAS FRECUENTES</span>
+          <span data-lang-en>FAQ</span>
+        </span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <span data-lang-es>Preguntas</span>
+        <span data-lang-en>Frequently Asked</span>
+        <br>
+        <span class="gradient-text">
+          <span data-lang-es>Frecuentes</span>
+          <span data-lang-en>Questions</span>
+        </span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿Cómo funciona la IA de gessel.ai?</span>
+              <span data-lang-en>How does gessel.ai's AI work?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>gessel.ai utiliza modelos de lenguaje especializados, entrenados específicamente en psicología clínica, para transformar tus notas en documentación profesional. No usamos modelos genéricos — nuestros modelos entienden terminología clínica, marcos terapéuticos y estándares de documentación como SOAP, DAP, BIRP y GIRP.</span>
+            <span data-lang-en>gessel.ai uses specialized language models, specifically trained in clinical psychology, to transform your notes into professional documentation. We don't use generic models — our models understand clinical terminology, therapeutic frameworks, and documentation standards like SOAP, DAP, BIRP, and GIRP.</span>
+          </div>
+        </details>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿gessel.ai cumple con HIPAA?</span>
+              <span data-lang-en>Is gessel.ai HIPAA compliant?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>Sí. gessel.ai está diseñado desde cero para cumplir con HIPAA. Implementamos salvaguardas técnicas y administrativas completas, ofrecemos BAA (Business Associate Agreement) y nuestra infraestructura está alojada en servidores certificados SOC 2 Tipo II. Las imágenes de notas se eliminan inmediatamente después del procesamiento OCR.</span>
+            <span data-lang-en>Yes. gessel.ai is designed from the ground up to be HIPAA compliant. We implement full technical and administrative safeguards, offer BAA (Business Associate Agreement), and our infrastructure is hosted on SOC 2 Type II certified servers. Note images are deleted immediately after OCR processing.</span>
+          </div>
+        </details>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿Qué formatos de notas clínicas soporta?</span>
+              <span data-lang-en>What clinical note formats are supported?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>Actualmente soportamos SOAP, DAP, BIRP y GIRP, con codificación automática DSM-5 y CIE-11. También puedes crear formatos personalizados adaptados a las necesidades de tu práctica o institución.</span>
+            <span data-lang-en>We currently support SOAP, DAP, BIRP, and GIRP, with automatic DSM-5 and ICD-11 coding. You can also create custom formats tailored to your practice or institution's needs.</span>
+          </div>
+        </details>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿Puedo probarlo gratis?</span>
+              <span data-lang-en>Can I try it for free?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>Sí. Ofrecemos una prueba gratuita de 14 días sin necesidad de tarjeta de crédito. Tendrás acceso completo a todas las funciones para que puedas experimentar cómo gessel.ai transforma tu flujo de trabajo.</span>
+            <span data-lang-en>Yes. We offer a 14-day free trial with no credit card required. You'll get full access to all features so you can experience how gessel.ai transforms your workflow.</span>
+          </div>
+        </details>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿Qué pasa con mis datos si cancelo?</span>
+              <span data-lang-en>What happens to my data if I cancel?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>Tú tienes el control total de tus datos. Puedes exportar toda tu información en cualquier momento. Si decides cancelar, te damos 30 días para exportar todo antes de eliminar permanentemente tus datos de nuestros servidores.</span>
+            <span data-lang-en>You have full control over your data. You can export all your information at any time. If you decide to cancel, we give you 30 days to export everything before permanently deleting your data from our servers.</span>
+          </div>
+        </details>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-item">
+        <details class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 font-semibold text-gray-900 hover:text-teal-600 transition-colors">
+            <span>
+              <span data-lang-es>¿gessel.ai reemplaza el juicio clínico?</span>
+              <span data-lang-en>Does gessel.ai replace clinical judgment?</span>
+            </span>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed">
+            <span data-lang-es>No. gessel.ai es una herramienta de asistencia, no de sustitución. Todas las notas, planes y sugerencias generadas deben ser revisadas y aprobadas por el clínico antes de su uso. Tú siempre tienes la última palabra en cada decisión clínica.</span>
+            <span data-lang-en>No. gessel.ai is an assistance tool, not a replacement. All generated notes, plans, and suggestions should be reviewed and approved by the clinician before use. You always have the final say in every clinical decision.</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Final CTA Section -->
 <section class="relative bg-gradient-to-br from-teal-50 via-white to-indigo-50 py-24 overflow-hidden">
@@ -2233,6 +2629,17 @@
       document.getElementById('lead-form').reset();
       updateModalLang();
       openModal();
+    });
+  });
+
+  // FAQ exclusive accordion — close other items when one opens
+  document.querySelectorAll('.faq-item details').forEach(function(detail) {
+    detail.addEventListener('toggle', function() {
+      if (this.open) {
+        document.querySelectorAll('.faq-item details').forEach(function(other) {
+          if (other !== detail) other.removeAttribute('open');
+        });
+      }
     });
   });
 </script>
