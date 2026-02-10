@@ -470,10 +470,11 @@
       <!-- Hero Visual - Cycling Note Formats -->
       <div class="relative animate-float">
         <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-2xl p-6 transform hover:scale-[1.02] transition-transform duration-500">
-          <div class="formats-container" data-carousel="hero-formats" data-interval="4000">
+          <!-- Hero Narrative Animation -->
+          <div class="hero-narrative" id="hero-narrative">
 
-          <!-- Format 0: Raw Unstructured Notes -->
-          <div class="format-raw active">
+            <!-- Scene 1: Raw Notes -->
+            <div class="hero-scene active" data-scene="0">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-3">
                 <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -513,157 +514,148 @@
             </div>
           </div>
 
-          <!-- Format 1: SOAP -->
-          <div class="format-soap">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <!-- Scene 2: SOAP Note (AI Transform) -->
+            <div class="hero-scene" data-scene="1">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-indigo-400 text-sm font-medium flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                  <span>SOAP</span>
+                  <span class="text-xs text-slate-500 ml-1">
+                    <span data-lang-es>generado por IA</span>
+                    <span data-lang-en>AI generated</span>
+                  </span>
+                </span>
               </div>
-              <span class="text-indigo-400 text-sm font-medium">SOAP</span>
+              <div class="space-y-2">
+                <div class="scene-child bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                  <div class="text-indigo-400 text-xs font-semibold mb-1">SUBJETIVO</div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta disminución de síntomas ansiosos (PHQ-9: 8 → 5).</span><span data-lang-en>Patient reports decreased anxiety symptoms (PHQ-9: 8 → 5).</span></p>
+                </div>
+                <div class="scene-child bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <div class="text-violet-400 text-xs font-semibold mb-1">OBJETIVO</div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Afecto congruente, contacto visual adecuado.</span><span data-lang-en>Congruent affect, appropriate eye contact.</span></p>
+                </div>
+                <div class="scene-child bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
+                  <div class="text-cyan-400 text-xs font-semibold mb-1">ANÁLISIS</div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada (F41.1 / 6B00).</span><span data-lang-en>Generalized anxiety disorder (F41.1 / 6B00).</span></p>
+                </div>
+                <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Revisar diario de pensamientos.</span><span data-lang-en>Continue weekly CBT. Review thought journal.</span></p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-indigo-400 text-xs font-medium"><span data-lang-es>Alineado con APA</span><span data-lang-en>APA Aligned</span></span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
+                  <span class="text-amber-400 text-xs"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: 6B00</span>
+                </div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
-                <div class="text-indigo-400 text-xs font-semibold mb-1">SUBJETIVO</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta disminución de síntomas ansiosos (PHQ-9: 8 → 5).</span><span data-lang-en>Patient reports decreased anxiety symptoms (PHQ-9: 8 → 5).</span></p>
-              </div>
-              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-                <div class="text-violet-400 text-xs font-semibold mb-1">OBJETIVO</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Afecto congruente, contacto visual adecuado.</span><span data-lang-en>Congruent affect, appropriate eye contact.</span></p>
-              </div>
-              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-                <div class="text-cyan-400 text-xs font-semibold mb-1">ANÁLISIS</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada (F41.1 / 6B00).</span><span data-lang-en>Generalized anxiety disorder (F41.1 / 6B00).</span></p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
-                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Revisar diario de pensamientos.</span><span data-lang-en>Continue weekly CBT. Review thought journal.</span></p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-3">
-              <span class="text-indigo-400 text-xs font-medium"><span data-lang-es>Alineado con APA</span><span data-lang-en>APA Aligned</span></span>
-              <div class="flex items-center space-x-2">
-                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
-                <span class="text-amber-400 text-xs"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: 6B00</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Format 2: DAP -->
-          <div class="format-dap">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <!-- Scene 3: Treatment Plan Snippet -->
+            <div class="hero-scene" data-scene="2">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-emerald-400 text-sm font-medium flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                  </svg>
+                  <span data-lang-es>Plan de Tratamiento</span>
+                  <span data-lang-en>Treatment Plan</span>
+                </span>
               </div>
-              <span class="text-violet-400 text-sm font-medium">DAP</span>
+              <div class="space-y-2">
+                <div class="scene-child bg-slate-700/30 rounded-lg p-3">
+                  <div class="text-slate-500 text-xs mb-1"><span data-lang-es>Diagnóstico</span><span data-lang-en>Diagnosis</span></div>
+                  <p class="text-white text-sm font-medium"><span data-lang-es>Trastorno de Ansiedad Generalizada</span><span data-lang-en>Generalized Anxiety Disorder</span> <span class="text-slate-400">F41.1 / 6B00</span></p>
+                </div>
+                <div class="scene-child bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
+                  <div class="flex items-center space-x-2 mb-1">
+                    <span class="w-5 h-5 bg-indigo-500 text-white text-xs font-bold rounded flex items-center justify-center">S</span>
+                    <span class="text-indigo-400 text-xs font-semibold"><span data-lang-es>META SMART</span><span data-lang-en>SMART GOAL</span></span>
+                  </div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Reducir ataques de pánico de 4/sem a ≤1/sem en 8 semanas</span><span data-lang-en>Reduce panic attacks from 4/wk to ≤1/wk in 8 weeks</span></p>
+                </div>
+                <div class="scene-child bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <div class="text-violet-400 text-xs font-semibold mb-1"><span data-lang-es>INTERVENCIONES RECOMENDADAS</span><span data-lang-en>RECOMMENDED INTERVENTIONS</span></div>
+                  <div class="flex flex-wrap gap-1">
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-0.5 rounded"><span data-lang-es>Respiración</span><span data-lang-en>Breathing</span></span>
+                    <span class="bg-violet-500/20 text-violet-300 text-xs px-2 py-0.5 rounded"><span data-lang-es>Reestructuración</span><span data-lang-en>Restructuring</span></span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded"><span data-lang-es>Exposición</span><span data-lang-en>Exposure</span></span>
+                  </div>
+                </div>
+                <div class="scene-child grid grid-cols-2 gap-2">
+                  <div class="bg-rose-500/10 border border-rose-500/20 rounded-lg p-2 text-center">
+                    <div class="text-rose-400 text-xs">GAD-7</div>
+                    <p class="text-white text-lg font-bold">16 <span class="text-rose-400 text-xs"><span data-lang-es>severo</span><span data-lang-en>severe</span></span></p>
+                  </div>
+                  <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 text-center">
+                    <div class="text-emerald-400 text-xs"><span data-lang-es>Meta</span><span data-lang-en>Goal</span></div>
+                    <p class="text-white text-lg font-bold">&lt;8 <span class="text-emerald-400 text-xs"><span data-lang-es>8 sem</span><span data-lang-en>8 wks</span></span></p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-                <div class="text-violet-400 text-xs font-semibold mb-1">DATOS</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente reporta mejoría en síntomas ansiosos. PHQ-9 disminuyó de 8 a 5. Afecto congruente, buen contacto visual.</span><span data-lang-en>Patient reports improvement in anxiety symptoms. PHQ-9 decreased from 8 to 5. Congruent affect, good eye contact.</span></p>
-              </div>
-              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-                <div class="text-cyan-400 text-xs font-semibold mb-1">ANÁLISIS</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Trastorno de ansiedad generalizada con respuesta positiva al tratamiento. Progreso hacia metas terapéuticas.</span><span data-lang-en>Generalized anxiety disorder with positive treatment response. Progress toward therapeutic goals.</span></p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
-                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC semanal. Practicar respiración. Revisar diario de pensamientos próxima sesión.</span><span data-lang-en>Continue weekly CBT. Practice breathing. Review thought journal next session.</span></p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-3">
-              <span class="text-violet-400 text-xs font-medium"><span data-lang-es>Alineado con APA</span><span data-lang-en>APA Aligned</span></span>
-              <div class="flex items-center space-x-2">
-                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
-                <span class="text-amber-400 text-xs"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: 6B00</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Format 3: BIRP -->
-          <div class="format-birp">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <!-- Scene 4: Insight Card -->
+            <div class="hero-scene" data-scene="3">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="text-violet-400 text-sm font-medium flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                  <span data-lang-es>Insights Clínicos</span>
+                  <span data-lang-en>Clinical Insights</span>
+                </span>
               </div>
-              <span class="text-cyan-400 text-sm font-medium">BIRP</span>
+              <div class="space-y-2">
+                <div class="scene-child bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-violet-400 text-xs font-semibold"><span data-lang-es>TEMAS RECURRENTES</span><span data-lang-en>RECURRING THEMES</span></span>
+                    <span class="text-violet-400 text-xs"><span data-lang-es>Detectado por IA</span><span data-lang-en>AI detected</span></span>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="bg-violet-500/20 text-violet-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Conflicto laboral</span><span data-lang-en>Work conflict</span> (8x)</span>
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Autoestima</span><span data-lang-en>Self-esteem</span> (6x)</span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded-full"><span data-lang-es>Límites</span><span data-lang-en>Boundaries</span> (5x)</span>
+                  </div>
+                </div>
+                <div class="scene-child bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
+                  <div class="text-amber-400 text-xs font-semibold mb-2"><span data-lang-es>CONEXIÓN DETECTADA</span><span data-lang-en>CONNECTION DETECTED</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Episodios de ansiedad coinciden con reuniones con supervisora (correlación 0.85)</span><span data-lang-en>Anxiety episodes correlate with supervisor meetings (correlation 0.85)</span></p>
+                </div>
+                <div class="scene-child bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                  <div class="text-emerald-400 text-xs font-semibold mb-2"><span data-lang-es>SUGERENCIA TERAPÉUTICA</span><span data-lang-en>THERAPEUTIC SUGGESTION</span></div>
+                  <p class="text-slate-300 text-sm"><span data-lang-es>Explorar dinámica de autoridad y experiencias con figuras de poder</span><span data-lang-en>Explore authority dynamics and experiences with power figures</span></p>
+                </div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-                <div class="text-cyan-400 text-xs font-semibold mb-1">COMPORTAMIENTO</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente llega puntual, afecto congruente. Reporta disminución de ansiedad laboral.</span><span data-lang-en>Patient arrives on time, congruent affect. Reports decreased work anxiety.</span></p>
-              </div>
-              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-                <div class="text-violet-400 text-xs font-semibold mb-1">INTERVENCIÓN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Reestructuración cognitiva, técnicas de respiración diafragmática, exposición gradual.</span><span data-lang-en>Cognitive restructuring, diaphragmatic breathing techniques, gradual exposure.</span></p>
-              </div>
-              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
-                <div class="text-indigo-400 text-xs font-semibold mb-1">RESPUESTA</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Paciente receptiva, practica técnicas activamente. PHQ-9: 8 → 5.</span><span data-lang-en>Patient receptive, actively practices techniques. PHQ-9: 8 → 5.</span></p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
-                <div class="text-emerald-400 text-xs font-semibold mb-1">PLAN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar TCC. Tarea: diario de pensamientos automáticos.</span><span data-lang-en>Continue CBT. Homework: automatic thought journal.</span></p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-3">
-              <span class="text-cyan-400 text-xs font-medium"><span data-lang-es>Alineado con APA</span><span data-lang-en>APA Aligned</span></span>
-              <div class="flex items-center space-x-2">
-                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
-                <span class="text-amber-400 text-xs"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: 6B00</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Format 4: GIRP -->
-          <div class="format-girp">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-              </div>
-              <span class="text-emerald-400 text-sm font-medium">GIRP</span>
-            </div>
-            <div class="space-y-2">
-              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
-                <div class="text-emerald-400 text-xs font-semibold mb-1">METAS</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Reducir síntomas de ansiedad. Meta: PHQ-9 < 5 en 8 semanas.</span><span data-lang-en>Reduce anxiety symptoms. Goal: PHQ-9 < 5 in 8 weeks.</span></p>
-              </div>
-              <div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-3">
-                <div class="text-violet-400 text-xs font-semibold mb-1">INTERVENCIÓN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>TCC: reestructuración cognitiva, respiración diafragmática, exposición.</span><span data-lang-en>CBT: cognitive restructuring, diaphragmatic breathing, exposure.</span></p>
-              </div>
-              <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
-                <div class="text-indigo-400 text-xs font-semibold mb-1">RESPUESTA</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Progreso significativo. PHQ-9: 8 → 5. Mejoría en regulación emocional.</span><span data-lang-en>Significant progress. PHQ-9: 8 → 5. Improved emotional regulation.</span></p>
-              </div>
-              <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-                <div class="text-cyan-400 text-xs font-semibold mb-1">PLAN</div>
-                <p class="text-slate-300 text-sm"><span data-lang-es>Continuar hacia meta. Próxima sesión: revisar diario de pensamientos.</span><span data-lang-en>Continue toward goal. Next session: review thought journal.</span></p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-3">
-              <span class="text-emerald-400 text-xs font-medium"><span data-lang-es>Alineado con APA</span><span data-lang-en>APA Aligned</span></span>
-              <div class="flex items-center space-x-2">
-                <span class="text-emerald-400 text-xs">DSM-5: F41.1</span>
-                <span class="text-amber-400 text-xs"><span data-lang-es>CIE-11</span><span data-lang-en>ICD-11</span>: 6B00</span>
-              </div>
-            </div>
-          </div>
+          </div><!-- end hero-narrative -->
 
-          </div><!-- end formats-container -->
-
-          <div class="carousel-nav" data-carousel-nav="hero-formats">
-            <button class="carousel-prev" aria-label="Previous"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
-            <div class="carousel-dots"></div>
-            <button class="carousel-next" aria-label="Next"><svg class="carousel-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
-            <button class="carousel-play-pause" aria-label="Pause"><svg class="carousel-pause" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/></svg></button>
+          <!-- Scene progress indicator -->
+          <div class="hero-progress flex items-center justify-center gap-2 mt-4">
+            <div class="hero-progress-dot active" data-progress="0"></div>
+            <div class="hero-progress-dot" data-progress="1"></div>
+            <div class="hero-progress-dot" data-progress="2"></div>
+            <div class="hero-progress-dot" data-progress="3"></div>
           </div>
 
           <div class="absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -2227,6 +2219,58 @@
   document.getElementById('mobile-menu-btn').addEventListener('click', () => {
     document.getElementById('mobile-menu').classList.toggle('hidden');
   });
+
+  // Hero Narrative Animation Controller
+  (function() {
+    var narrative = document.getElementById('hero-narrative');
+    if (!narrative) return;
+
+    var scenes = narrative.querySelectorAll('.hero-scene');
+    var dots = document.querySelectorAll('.hero-progress-dot');
+    var count = scenes.length;
+    var current = 0;
+    var timer = null;
+
+    var durations = [3500, 4000, 4000, 4000];
+
+    function showScene(index) {
+      scenes[current].classList.remove('active');
+      scenes[current].classList.add('leaving');
+      dots[current].classList.remove('active');
+
+      var outgoing = scenes[current];
+      setTimeout(function() {
+        outgoing.classList.remove('leaving');
+      }, 450);
+
+      current = index % count;
+
+      setTimeout(function() {
+        scenes[current].classList.add('active');
+        dots[current].classList.add('active');
+      }, 100);
+    }
+
+    function advance() {
+      showScene(current + 1);
+      scheduleNext();
+    }
+
+    function scheduleNext() {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(advance, durations[current]);
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        if (timer) { clearTimeout(timer); timer = null; }
+      } else {
+        scheduleNext();
+      }
+    });
+
+    scheduleNext();
+  })();
 
   // Carousel controller for all cycling animations
   (function() {
